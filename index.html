@@ -142,13 +142,17 @@
 </div></center>
 <br>
 
-<div class="box" onclick="playSound(); showText('modMenu')">ModMenu</div>
-    <div class="box" onclick="playSound(); showText('playerData')">PlayerData</div>
-    <div class="box" onclick="playSound(); showText('characterManager')">CharacterManager</div>
-    <div class="box" onclick="playSound(); showText('characterModel')">CharacterModel</div>
-    <div class="box" onclick="playSound(); showText('main')">Main</div>
-    <div class="box" onclick="playSound(); showText('amf')">AMF</div>
-    <div class="box" onclick="playSound(); showText('tutorialpasang')">Video Tutorial</div>
+     <!-- Tombol Unlocked Tutor -->
+     <button class="box" onclick="toggleUnlockedTutor()">Unlocked Tutor</button>
+     <div id="unlockedTutorButtons" style="display: none;">
+       <div class="box" onclick="playSound(); showText('modMenu')">ModMenu</div>
+       <div class="box" onclick="playSound(); showText('playerData')">PlayerData</div>
+       <div class="box" onclick="playSound(); showText('characterManager')">CharacterManager</div>
+       <div class="box" onclick="playSound(); showText('characterModel')">CharacterModel</div>
+       <div class="box" onclick="playSound(); showText('main')">Main</div>
+       <div class="box" onclick="playSound(); showText('amf')">AMF</div>
+       <div class="box" onclick="playSound(); showText('tutorialpasang')">Video Tutorial</div>
+     </div>
 
     <div id="textOutput" class="text-area"></div>
     
@@ -762,6 +766,15 @@ function showPopup() {
 function playNextSong(event) {
     playRandomSong(event);
 }
+
+ function toggleUnlockedTutor() {
+          const unlockedTutorButtons = document.getElementById('unlockedTutorButtons');
+          if (unlockedTutorButtons.style.display === 'none') {
+              unlockedTutorButtons.style.display = 'block';
+          } else {
+              unlockedTutorButtons.style.display = 'none';
+          }
+      }
       
     </script>
 </body>
