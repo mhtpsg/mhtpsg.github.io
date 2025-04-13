@@ -142,6 +142,11 @@
 </div></center>
 <br>
 
+<!-- Tombol Unlocked Tutor dan Skip Battle Tutor -->
+<div style="display: flex; gap: 10px;">
+    <button class="box" onclick="toggleSkipBattleTutor()">Skip Battle Tutor</button>
+</div>
+
      <!-- Tombol Unlocked Tutor -->
      <button class="box" onclick="toggleUnlockedTutor()">Unlocked Tutor</button>
      <div id="unlockedTutorButtons" style="display: none;">
@@ -153,6 +158,10 @@
        <div class="box" onclick="playSound(); showText('amf')">AMF</div>
        <div class="box" onclick="playSound(); showText('tutorialpasang')">Video Tutorial</div>
      </div>
+     
+     <div id="skipBattleTutorButtons" style="display: none;">
+    <div class="box" onclick="playSound(); showText('modMenuSkip')">Mod Menu</div>
+</div>
 
     <div id="textOutput" class="text-area"></div>
     
@@ -673,7 +682,8 @@ private function createModButton() : TextField
    }
 }
 
-}`
+}`,
+modMenuSkip: `SOON`
         };
 
         let currentKey = null; // Menyimpan kunci yang sedang ditampilkan
@@ -768,13 +778,22 @@ function playNextSong(event) {
 }
 
  function toggleUnlockedTutor() {
-          const unlockedTutorButtons = document.getElementById('unlockedTutorButtons');
-          if (unlockedTutorButtons.style.display === 'none') {
-              unlockedTutorButtons.style.display = 'block';
-          } else {
-              unlockedTutorButtons.style.display = 'none';
-          }
-      }
+    const unlockedTutorButtons = document.getElementById('unlockedTutorButtons');
+    if (unlockedTutorButtons.style.display === 'none') {
+        unlockedTutorButtons.style.display = 'block';
+    } else {
+        unlockedTutorButtons.style.display = 'none';
+    }
+}
+
+function toggleSkipBattleTutor() {
+    const skipBattleTutorButtons = document.getElementById('skipBattleTutorButtons');
+    if (skipBattleTutorButtons.style.display === 'none') {
+        skipBattleTutorButtons.style.display = 'block';
+    } else {
+        skipBattleTutorButtons.style.display = 'none';
+    }
+}
       
     </script>
 </body>
