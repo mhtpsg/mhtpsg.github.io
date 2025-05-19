@@ -3,798 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlocked Mod Menu Tutorial</title>
+    <title>Mhantappu Download Center</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: 
-            grey;
+            background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            overflow: hidden;
         }
-         .login-container {
+        .loading-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+            background: linear-gradient(135deg, #ff007f, #7f00ff);
+            color: #ffffff;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .login-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .loading-text {
+            font-size: 48px;
+            animation: rainbow 1.5s infinite;
         }
-        .login-box h1 {
-            color: red;
-            font-weight: bold;
-        }
-        .login-box input {
-            margin: 10px 0;
-            padding: 10px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .login-box button {
-            padding: 10px 20px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .box {
-            width: 150px;
-            height: 50px;
-            margin: 10px;
-            display: inline-block;
-            background-color: white;
-            color: black;
-            text-align: center;
-            line-height: 50px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .text-area {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            display: none;
-            color: sandybrown;
-            white-space: pre-wrap; /* Preserve whitespace */
-        }
-        .copy-button {
-            margin-top: 10px;
-            padding: 5px 10px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .animated-text {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            animation: rgbBlink 1s infinite;
-        }
-        @keyframes rgbBlink {
+        @keyframes rainbow {
             0% { color: red; }
-            25% { color: green; }
-            50% { color: blue; }
-            75% { color: yellow; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
             100% { color: red; }
         }
-        .logo-container {
+        .title {
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 20px;
+            font-size: 48px;
+            animation: rainbow 1.5s infinite;
         }
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        .subtitle {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 40px;
+            animation: rainbow 1.5s infinite;
         }
-        .join-discord-button {
-            padding: 10px 20px;
-            background-color: #7289DA;
+        .faq-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .faq-box {
+            background: navy;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 20px;
+            width: calc(25% - 40px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+            font-weight: bold;
+        }
+        .faq-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .message {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: red;
+            height: 100vh;
+        }
+        .message-box {
+            background: navy;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: red;
+        }
+        .loading-message {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            color: red;
+            font-size: 24px;
+            text-align: center;
+            display: none;
+        }
+        .back-button {
+            background-color: blue;
             color: white;
             border: none;
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        .popup {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
-            justify-content: center; /* Center the image */
-            align-items: center; /* Center the image */
+        .back-button:hover {
+            background-color: darkblue;
+            transform: translateY(-2px);
         }
-        .popup img {
-            max-width: 90%; /* Responsive image */
-            max-height: 90%; /* Responsive image */
-            cursor: pointer; /* Change cursor to pointer */
+        @media (max-width: 768px) {
+            .faq-box {
+                width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .faq-box {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-  
-  <div id="login" class="login-container">
-        <div class="login-box">
-            <h1>ONLY ADMINS!</h1>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <center><button onclick="login()">Login</button></center>
-        </div>
+
+    <div id="loading-screen" class="loading-container">
+        <p class="loading-text">LOADING...</p>
+    </div>
+
+    <div class="title">MHANTAPPU</div>
+    <div class="subtitle">DOWNLOAD CENTER</div>
+
+    <div class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showOptions('Ninja Rift', false)">Ninja Rift</div>
+        <div class="faq-box" onclick="showOptions('Ninja Specter', false)">Ninja Specter</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Revenge', true)">Shinobi Revenge</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Warfare', false)">Shinobi Warfare</div>
+        <div class="faq-box" onclick="showOptions('Multi App', true)">Multi App</div>
+    </div>
+
+    <div id="options" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Rift', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-specter" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Specter', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-revenge" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-warfare" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-multi" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Multi App', '32&64 Bit')">32 Bit & 64 Bit (Support android 8-13)</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="loading" class="loading">
+        <p class="loading-message">Please wait...</p>
     </div>
     
-  <div id="mainContent" style="display: none;"> <!-- Tambahkan ID dan sembunyikan -->
-  <div class="animated-text">Works for NR/SR/Any Wayang</div>
-  <br>
-  <div class="logo-container">
-  <img class="logo" src="images/logo.png" alt="Logo" onclick="showPopup()">
-    <center><button class="join-discord-button" onclick="playSound(); window.open('https://discord.gg/wAkYqEUWXj', '_blank')">Join Discord</button>
-</div></center>
-<br>
-
-<!-- Tombol Unlocked Tutor dan Skip Battle Tutor -->
-<div style="display: flex; gap: 10px;">
-    <button class="box" onclick="toggleSkipBattleTutor()">Skip Battle Tutor</button>
-</div>
-
-     <!-- Tombol Unlocked Tutor -->
-     <button class="box" onclick="toggleUnlockedTutor()">Unlocked Tutor</button>
-     <div id="unlockedTutorButtons" style="display: none;">
-       <div class="box" onclick="playSound(); showText('modMenu')">ModMenu</div>
-       <div class="box" onclick="playSound(); showText('playerData')">PlayerData</div>
-       <div class="box" onclick="playSound(); showText('characterManager')">CharacterManager</div>
-       <div class="box" onclick="playSound(); showText('characterModel')">CharacterModel</div>
-       <div class="box" onclick="playSound(); showText('main')">Main</div>
-       <div class="box" onclick="playSound(); showText('amf')">AMF</div>
-       <div class="box" onclick="playSound(); showText('tutorialpasang')">Video Tutorial</div>
-     </div>
-     
-     <div id="skipBattleTutorButtons" style="display: none;">
-    <div class="box" onclick="playSound(); showText('modMenuSkip')">Mod Menu</div>
-</div>
-
-    <div id="textOutput" class="text-area"></div>
-    
-    <button id="copyButton" class="copy-button" style="display:none;" onclick="playSound(); copyText()">Copy Text</button>
-    
-<div class="popup" id="imagePopup" onclick="hidePopup()">
-    <img src="images/logo.png" alt="Logo Popup" onclick="playRandomSong(event)">
-</div>
-        
+    <div id="message" class="message">
+        <div class="message-box">NOT READY FOR THE MOD!</div>
     </div>
-    <audio id="buttonClickSound" src="sounds/button-click.mp3"></audio>
-    <audio id="musicPlayer"></audio> <!-- Elemen audio untuk memutar lagu -->
-    
 
     <script>
-        const texts = {
-            modMenu: `package mhantappu
-{
-   import flash.display.GradientType;
-   import flash.display.Shape;
-   import flash.display.Sprite;
-   import flash.events.MouseEvent;
-   import flash.events.TouchEvent;
-   import flash.filters.DropShadowFilter;
-   import flash.net.URLRequest;
-   import flash.net.navigateToURL;
-   import flash.text.TextField;
-   import flash.text.TextFieldType;
-   import flash.text.TextFormat;
-   import flash.utils.setTimeout;
-   
-   public class ModMenu extends Sprite
-   {
-      
-      private static const LABEL_HEIGHT:Number = 15;
-      
-      private static const LABEL_GAP:Number = 15;
-       
-      
-      private var hairstyleInput:TextField;
-      
-      private var backItemInput:TextField;
-      
-      private var skillsInput:TextField;
-      
-      private var clothingInput:TextField;
-      
-      private var weaponInput:TextField;
-      
-      private var accessoryInput:TextField;
-      
-      private var petLevelInput:TextField;
-      
-      private var petSkillsInput:TextField;
-      
-      private var petNameInput:TextField;
-      
-      private var petSwfInput:TextField;
-      
-      private var statusText:TextField;
-      
-      public function ModMenu()
-      {
-         super();
-         createMenu();
-         this.visible = false;
-         this.addEventListener(MouseEvent.MOUSE_DOWN,startDragMenu);
-         this.addEventListener(MouseEvent.MOUSE_UP,stopDragMenu);
-         this.addEventListener(TouchEvent.TOUCH_BEGIN,startHPDragMenu);
-         this.addEventListener(TouchEvent.TOUCH_END,stopHPDragMenu);
-      }
-      
-      private function createMenu() : void
-      {
-         drawBackground();
-         hairstyleInput = addInput("Hairstyle:",PlayerData.instance.spoof_data.character_sets.hairstyle,10);
-         backItemInput = addInput("Back Item:",PlayerData.instance.spoof_data.character_sets.back_item,hairstyleInput.y + LABEL_HEIGHT + LABEL_GAP);
-         skillsInput = addInput("Skills:",PlayerData.instance.spoof_data.character_sets.skills,backItemInput.y + LABEL_HEIGHT + LABEL_GAP);
-         clothingInput = addInput("Clothing:",PlayerData.instance.spoof_data.character_sets.clothing,skillsInput.y + LABEL_HEIGHT + LABEL_GAP);
-         weaponInput = addInput("Weapon:",PlayerData.instance.spoof_data.character_sets.weapon,clothingInput.y + LABEL_HEIGHT + LABEL_GAP);
-         accessoryInput = addInput("Accessory:",PlayerData.instance.spoof_data.character_sets.accessory,weaponInput.y + LABEL_HEIGHT + LABEL_GAP);
-         petLevelInput = addInput("Pet Level:",PlayerData.instance.spoof_data.pet_data.pet_level,accessoryInput.y + LABEL_HEIGHT + LABEL_GAP);
-         petSkillsInput = addInput("Pet Skills:",PlayerData.instance.spoof_data.pet_data.pet_skills,petLevelInput.y + LABEL_HEIGHT + LABEL_GAP);
-         petNameInput = addInput("Pet Name:",PlayerData.instance.spoof_data.pet_data.pet_name,petSkillsInput.y + LABEL_HEIGHT + LABEL_GAP);
-         petSwfInput = addInput("Pet SWF:",PlayerData.instance.spoof_data.pet_data.pet_swf,petNameInput.y + LABEL_HEIGHT + LABEL_GAP);
-         var updateAllButton:TextField = createButton("Update All");
-         updateAllButton.y = 380;
-         updateAllButton.x = 220;
-         updateAllButton.addEventListener(MouseEvent.CLICK,updateAll);
-         addChild(updateAllButton);
-         var toggleButton:TextField = createButton("Toggle Cheat");
-         toggleButton.addEventListener(MouseEvent.CLICK,toggleSpoofData);
-         toggleButton.x = 220;
-         toggleButton.y = 50;
-         addChild(toggleButton);
-         var discordButton:TextField = createButton("Join Discord");
-         discordButton.addEventListener(MouseEvent.CLICK,goToDiscord);
-         discordButton.x = 220;
-         discordButton.y = 250;
-         addChild(discordButton);
-         var youtubeButton:TextField = createButton("Donate");
-         youtubeButton.addEventListener(MouseEvent.CLICK,goToYouTube);
-         youtubeButton.x = 220;
-         youtubeButton.y = 200;
-         addChild(youtubeButton);
-         statusText = new TextField();
-         statusText.width = 200;
-         statusText.height = 40;
-         statusText.y = toggleButton.y + 35;
-         statusText.x = toggleButton.x;
-         statusText.selectable = false;
-         statusText.defaultTextFormat = new TextFormat("Arial",15,16777215);
-         updateStatusText();
-         addChild(statusText);
-      }
-      
-      private function drawBackground() : void
-      {
-         var background:Shape = new Shape();
-         background.graphics.beginGradientFill(GradientType.LINEAR,[3029581,1842980],[1,1],[0,255]);
-         background.graphics.drawRoundRect(0,0,350,520,20,20);
-         background.graphics.endFill();
-         addChild(background);
-      }
-      
-      private function addInput(label:String, defaultText:String, yPos:Number) : TextField
-      {
-         addLabel(label,yPos,10);
-         var inputField:TextField = createInput(defaultText);
-         inputField.y = yPos + LABEL_HEIGHT + 5;
-         inputField.x = 10;
-         addChild(inputField);
-         return inputField;
-      }
-      
-      private function createButton(label:String) : TextField
-      {
-         var format:TextFormat;
-         var button:TextField = new TextField();
-         button.text = label;
-         button.textColor = 16777215;
-         button.width = 120;
-         button.height = 30;
-         button.border = true;
-         button.borderColor = 16777215;
-         button.background = true;
-         button.backgroundColor = 31743;
-         button.selectable = false;
-         format = new TextFormat("Arial",16,16777215,true);
-         format.align = "center";
-         button.defaultTextFormat = format;
-         button.setTextFormat(format);
-         button.filters = [new DropShadowFilter(4,45,0,0.5)];
-         button.addEventListener(MouseEvent.MOUSE_OVER,function():void
-         {
-            button.backgroundColor = 22195;
-         });
-         button.addEventListener(MouseEvent.MOUSE_OUT,function():void
-         {
-            button.backgroundColor = 31743;
-         });
-         return button;
-      }
-      
-      private function createInput(defaultText:String) : TextField
-      {
-         var input:TextField = new TextField();
-         input.type = TextFieldType.INPUT;
-         input.border = true;
-         input.borderColor = 16777215;
-         input.background = true;
-         input.backgroundColor = 3422784;
-         input.textColor = 16777215;
-         input.width = 200;
-         input.height = 25;
-         input.text = defaultText;
-         input.defaultTextFormat = new TextFormat("Arial",14,16777215);
-         return input;
-      }
-      
-      private function addLabel(label:String, yPos:Number, xPos:Number) : void
-      {
-         var labelText:TextField = new TextField();
-         labelText.text = label;
-         labelText.textColor = 16777215;
-         labelText.width = 120;
-         labelText.y = yPos;
-         labelText.x = xPos;
-         labelText.selectable = false;
-         labelText.defaultTextFormat = new TextFormat("Arial",16,16777215,true);
-         addChild(labelText);
-      }
-      
-      private function updateAll(event:MouseEvent) : void
-      {
-         updateHairstyle(hairstyleInput.text);
-         updateBackItem(backItemInput.text);
-         updateSkills(skillsInput.text);
-         updateClothing(clothingInput.text);
-         updateWeapon(weaponInput.text);
-         updateAccessory(accessoryInput.text);
-         updatePetLevel(petLevelInput.text);
-         updatePetSkills(petSkillsInput.text);
-         updatePetName(petNameInput.text);
-         updatePetSfw(petSwfInput.text);
-         showUpdateMessage("Data has been updated!");
-      }
-      
-      private function showUpdateMessage(message:String) : void
-      {
-         var format:TextFormat;
-         var popUp:TextField = new TextField();
-         popUp.text = message;
-         popUp.width = 250;
-         popUp.height = 40;
-         popUp.x = 220;
-         popUp.y = 420;
-         popUp.selectable = false;
-         popUp.textColor = 16777215;
-         popUp.border = false;
-         popUp.borderColor = 16777215;
-         format = new TextFormat("Arial",12,16777215);
-         popUp.defaultTextFormat = format;
-         popUp.setTextFormat(format);
-         addChild(popUp);
-         setTimeout(function():void
-         {
-            removeChild(popUp);
-         },2000);
-      }
-      
-      private function updateHairstyle(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.hairstyle = value;
-      }
-      
-      private function updateBackItem(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.back_item = value;
-      }
-      
-      private function updateSkills(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.skills = value;
-      }
-      
-      private function updateClothing(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.clothing = value;
-      }
-      
-      private function updateWeapon(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.weapon = value;
-      }
-      
-      private function updateAccessory(value:String) : void
-      {
-         PlayerData.instance.spoof_data.character_sets.accessory = value;
-      }
-      
-      private function updatePetLevel(value:String) : void
-      {
-         PlayerData.instance.spoof_data.pet_data.pet_level = value;
-      }
-      
-      private function updatePetSkills(value:String) : void
-      {
-         PlayerData.instance.spoof_data.pet_data.pet_skills = value;
-      }
-      
-      private function updatePetName(value:String) : void
-      {
-         PlayerData.instance.spoof_data.pet_data.pet_name = value;
-      }
-      
-      private function updatePetSfw(value:String) : void
-      {
-         PlayerData.instance.spoof_data.pet_data.pet_swf = value;
-      }
-      
-      private function toggleSpoofData(event:MouseEvent) : void
-      {
-         PlayerData.instance.spoof_data.enabled = !PlayerData.instance.spoof_data.enabled;
-         updateStatusText();
-      }
-      
-      private function updateStatusText() : void
-      {
-         if(PlayerData.instance.spoof_data.enabled)
-         {
-            statusText.text = "Cheat : Enabled";
-            statusText.textColor = 65280;
-         }
-         else
-         {
-            statusText.text = "Cheat : Disabled";
-            statusText.textColor = 16711680;
-         }
-      }
-      
-      private function goToDiscord(event:MouseEvent) : void
-      {
-         var discordURL:URLRequest = new URLRequest("https://discord.gg/wAkYqEUWXj");
-         navigateToURL(discordURL,"_blank");
-      }
-      
-      private function goToYouTube(event:MouseEvent) : void
-      {
-         var youtubeURL:URLRequest = new URLRequest("https://saweria.co/hadrianus");
-         navigateToURL(youtubeURL,"_blank");
-      }
-      
-      private function startDragMenu(event:MouseEvent) : void
-      {
-         this.startDrag();
-      }
-      
-      private function stopDragMenu(event:MouseEvent) : void
-      {
-         this.stopDrag();
-      }
-      
-      private function startHPDragMenu(event:TouchEvent) : void
-      {
-         this.startDrag();
-      }
-      
-      private function stopHPDragMenu(event:TouchEvent) : void
-      {
-         this.stopDrag();
-      }
-   }
-}
-
-}`,
-            playerData: `package mhantappu
-{
-   public class PlayerData
-   {
-      
-      private static var _instance:PlayerData;
-       
-      
-      public var spoof_data:Object;
-      
-      public function PlayerData()
-      {
-         super();
-         this.spoof_data = {
-            "enabled":false,
-            "character_sets":{
-               "hairstyle":"hair_313_0",
-               "back_item":"back_599",
-               "skills":"skill_823,skill_829,skill_1275,skill_909,skill_978,skill_803,skill_923,skill_1207",
-               "clothing":"set_1024_0",
-               "weapon":"wpn_919",
-               "accessory":"accessory_186"
-            },
-            "pet_data":{
-               "pet_level":"100",
-               "pet_skills":"1,0,0,1,1,1",
-               "pet_swf":"pet_yoshima",
-               "pet_name":"Rei is Scam"
-            }
-         };
-      }
-      
-      public static function get instance() : PlayerData
-      {
-         if(_instance == null)
-         {
-            _instance = new PlayerData();
-         }
-         return _instance;
-      }
-      
-      public function updateSpoofData(newData:Object) : void
-      {
-         this.spoof_data = newData;
-      }
-   }
-}
-
-}`,
-            characterManager: `import mhantappu.PlayerData;
-         
-         var spoof_data:Object = PlayerData.instance.spoof_data.character_sets;
-         var character_sets:Object = _loc2_;
-         if(PlayerData.instance.spoof_data.enabled)
-         {
-            for(var key in spoof_data)
-            {
-               character_sets[key] = spoof_data[key];
-            }
-         }
-`,
-            characterModel: `import mhantappu.PlayerData;
-         
-         if("pet_id" in param1.pet_data && !this.for_exam && this.getPlayerNumber() == 0)
-         {
-            _loc6_ = true;
-            if(BattleManager.isPvp() && !BattleManager.getPvpNetwork().arePetsAllowed())
-            {
-               _loc6_ = false;
-            }
-            if(_loc6_)
-            {
-               this.is_pet_loaded = false;
-               _loc4_ += 500;
-               if(BattleManager.isPvp())
-               {
-                  _loc4_ += 1000;
-               }
-               _loc7_ = param1.pet_data;
-               if(PlayerData.instance.spoof_data.enabled)
-               {
-                  param1.pet_data.pet_swf = PlayerData.instance.spoof_data.pet_data.pet_swf;
-                  var spoof_data:Object = PlayerData.instance.spoof_data.pet_data;
-                  for(var key in spoof_data)
-                  {
-                     _loc7_[key] = spoof_data[key];
-                  }
-               }
-               this.pet_model = new PetModel(this.getPlayerTeam(),this.getPlayerNumber(),_loc7_.pet_swf,_loc7_);
-               this.pet_model.checkIsLoaded(this);
-            }
-            else
-            {
-               this.is_pet_loaded = true;
-            }
-         }
-         else
-         {
-            this.is_pet_loaded = true;
-         }
-`,
-            main: `import flash.text.TextField;
-import flash.text.TextFormat;
-import mhantappu.ModMenu;
-import mhantappu.PlayerData;
-
-private var modMenu:ModMenu;
-private var modButton:TextField;
-
-var playerData:PlayerData = PlayerData.instance;
-modMenu = new ModMenu();
-addChild(modMenu);
-modButton = createModButton();
-modButton.addEventListener(MouseEvent.CLICK,toggleModMenu);
-addChild(modButton);
-
-private function createModButton() : TextField
-{
-   private function createModButton() : TextField
-      {
-         var button:TextField = new TextField();
-         button.text = "UNLOCKED MOD";
-         button.textColor = 16777215;
-         button.width = 110;
-         button.height = 30;
-         button.border = true;
-         button.borderColor = 16777215;
-         button.background = true;
-         button.backgroundColor = 5592405;
-         button.selectable = false;
-         button.defaultTextFormat = new TextFormat("Arial",14);
-         button.x = (stage.stageWidth - button.width) / 2;
-         button.y = 10;
-         return button;
-      }
-      
-      private function toggleModMenu(event:MouseEvent) : void
-      {
-         modMenu.visible = !modMenu.visible;
-      }
-}`, 
-          tutorialpasang: `SOON`,
-        
-            amf: `package amf
-{
-   import flash.events.NetStatusEvent;
-   import flash.net.NetConnection;
-   import flash.net.Responder;
-   
-   public class amfConnect
-   {
-       
-      
-      internal var remotingGateway:*;
-      
-      internal var netConnect:*;
-      
-      public function amfConnect()
-      {
-         super();
-      }
-      
-      public function service(param1:String, param2:Array, param3:Function) : void
-      {
-         this.remotingGateway = "https://ninjarift.org/amf_nl/";
-         this.netConnect = new NetConnection();
-         this.netConnect.connect(this.remotingGateway);
-         this.netConnect.call(param1,new Responder(param3,this.erroneousResult),param2);
-      }
-      
-      internal function connectionHandler(param1:NetStatusEvent) : void
-      {
-      }
-      
-      internal function successfulResult(param1:Object) : void
-      {
-      }
-      
-      internal function erroneousResult(param1:Object) : void
-      {
-      }
-   }
-}
-
-}`,
-modMenuSkip: `SOON`
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.querySelector('.faq-container').style.display = 'flex';
+            }, 2000); // Delay for 2 seconds
         };
 
-        let currentKey = null; // Menyimpan kunci yang sedang ditampilkan
-        let songIndex = 0; // Index lagu saat ini
-      const songs = [
-          'songs/01.mp3',
-          'songs/02.mp3',
-          'songs/03.mp3',
-          'songs/04.mp3',
-          'songs/05.mp3',
-          'songs/06.mp3',
-          'songs/07.mp3',
-          'songs/08.mp3',
-          'songs/09.mp3',
-          'songs/10.mp3'
-      ];
-      
-      function login() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  
-  fetch('https://mhtpsg.github.io/account/account-login.json') // Ganti dengan URL JSON yang sesuai
-    .then(response => response.json())
-    .then(data => {
-      if (username === data.username && password === data.password) {
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block'; // Tampilkan konten utama
-      } else {
-        alert('Username or password is incorrect!');
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching JSON:', error);
-    });
-}
-      
-        function showText(key) {
-            const textOutput = document.getElementById('textOutput');
-            const copyButton = document.getElementById('copyButton');
-            
-            
-            
+        function showOptions(game, isReady) {
+            document.querySelectorAll('.faq-container').forEach(container => {
+                container.style.display = 'none';
+            });
 
-            // Jika kunci yang sama diklik, sembunyikan teks
-            if (currentKey === key) {
-                textOutput.style.display = 'none';
-                copyButton.style.display = 'none';
-                currentKey = null; // Reset kunci
+            if (game === 'Multi App') {
+                document.getElementById('options-multi').style.display = 'flex';
+            } else if (isReady) {
+                document.getElementById('options-revenge').style.display = 'flex';
             } else {
-                textOutput.textContent = texts[key];
-                textOutput.style.display = 'block';
-                copyButton.style.display = 'block';
-                currentKey = key; // Set kunci yang baru
+                document.getElementById('message').style.display = 'flex';
+                setTimeout(goBack, 1500);
             }
         }
 
-        function copyText() {
-            const textOutput = document.getElementById('textOutput');
-            navigator.clipboard.writeText(textOutput.textContent).then(() => {
-                alert('Teks telah disalin ke clipboard!');
+        function goBack() {
+            document.querySelectorAll('.faq-container').forEach(container => {
+                container.style.display = 'none';
             });
+            document.querySelector('.faq-container').style.display = 'flex';
+            document.getElementById('message').style.display = 'none';
         }
-        
-function showPopup() {
-          document.getElementById('imagePopup').style.display = 'flex'; // Show the popup
-      }
 
-      function hidePopup() {
-          document.getElementById('imagePopup').style.display = 'none'; // Hide the popup
-          // Tidak menghentikan musik saat popup ditutup
-      }
-        
-        function playSound() {
-            const sound = document.getElementById('buttonClickSound');
-            sound.currentTime = 0; // Reset suara ke awal
-            sound.play(); // Mainkan suara
+        function showLoading(game, version) {
+            let url = getUrl(game, version);
+
+            document.querySelectorAll('.faq-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById('loading').style.display = 'flex';
+            document.querySelector('.loading-message').style.display = 'block';
+
+            setTimeout(() => {
+                window.open(url, '_blank'); // Open in new tab
+                location.reload(); // Refresh the current page
+            }, 2000);
         }
-        
-        function playRandomSong(event) {
-    event.stopPropagation(); // Prevent hiding the popup
-    const musicPlayer = document.getElementById('musicPlayer');
-    
-    // Pilih lagu secara acak
-    const randomIndex = Math.floor(Math.random() * songs.length);
-    musicPlayer.src = songs[randomIndex];
-    musicPlayer.play();
-}
 
-// Ganti pemanggilan fungsi playNextSong dengan playRandomSong
-function playNextSong(event) {
-    playRandomSong(event);
-}
-
- function toggleUnlockedTutor() {
-    const unlockedTutorButtons = document.getElementById('unlockedTutorButtons');
-    if (unlockedTutorButtons.style.display === 'none') {
-        unlockedTutorButtons.style.display = 'block';
-    } else {
-        unlockedTutorButtons.style.display = 'none';
-    }
-}
-
-function toggleSkipBattleTutor() {
-    const skipBattleTutorButtons = document.getElementById('skipBattleTutorButtons');
-    if (skipBattleTutorButtons.style.display === 'none') {
-        skipBattleTutorButtons.style.display = 'block';
-    } else {
-        skipBattleTutorButtons.style.display = 'none';
-    }
-}
-      
+        function getUrl(game, version) {
+            if (game === 'Ninja Rift') {
+                if (version === '32 Bit') return 'http://example.com/ninja_rift_32bit';
+                if (version === '64 Bit') return 'http://example.com/ninja_rift_64bit';
+                if (version === 'PC') return 'http://example.com/ninja_rift_pc';
+            }
+            if (game === 'Ninja Specter') {
+                if (version === '32 Bit') return 'http://example.com/ninja_specter_32bit';
+                if (version === '64 Bit') return 'http://example.com/ninja_specter_64bit';
+                if (version === 'PC') return 'http://example.com/ninja_specter_pc';
+            }
+            if (game === 'Shinobi Revenge') {
+                if (version === '32 Bit') return 'https://devuploads.com/079w0zhrwir0'; // Fixed URL
+                if (version === '64 Bit') return 'https://devuploads.com/fvefx3y85xwr'; // Fixed URL
+                if (version === 'PC') return 'https://devuploads.com/6gh160o2s9v9'; // Fixed URL
+            }
+            if (game === 'Shinobi Warfare') {
+                if (version === '32 Bit') return 'http://example.com/shinobi_warfare_32bit';
+                if (version === '64 Bit') return 'http://example.com/shinobi_warfare_64bit';
+                if (version === 'PC') return 'http://example.com/shinobi_warfare_pc';
+            }
+            if (game === 'Multi App') {
+                if (version === '32&64 Bit') return 'https://devuploads.com/ncis3fu4kn6y';
+            }
+        }
     </script>
 </body>
 </html>
