@@ -6,12 +6,26 @@
     <title>Mhantappu Download Center</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            overflow: hidden;
-        }
+    font-family: Arial, sans-serif;
+    background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    overflow-y: auto; /* Allow vertical scrolling */
+    height: 100vh; /* Ensure the body takes full height */
+}
+
+.faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    opacity: 1; /* Ensure it's visible */
+    transform: translateY(0); /* Reset transform */
+    animation: fadeInUp 0.5s forwards;
+    max-height: calc(100vh - 200px); /* Adjust height based on your layout */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px; /* Add padding for content */
+    position: relative; /* Ensure it is positioned correctly */
+}
         .loading-container {
             display: flex;
             align-items: center;
@@ -48,17 +62,7 @@
             margin-bottom: 40px;
             animation: rainbow 1.5s infinite;
         }
-  .faq-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s forwards;
-            max-height: 80vh; /* Set max height */
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding: 20px; /* Add padding for content */
-        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
