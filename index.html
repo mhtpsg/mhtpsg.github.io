@@ -48,13 +48,16 @@
             margin-bottom: 40px;
             animation: rainbow 1.5s infinite;
         }
-        .faq-container {
+  .faq-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s forwards;
+            max-height: 80vh; /* Set max height */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding: 20px; /* Add padding for content */
         }
         @keyframes fadeInUp {
             to {
@@ -149,38 +152,78 @@
     <div class="subtitle">DOWNLOAD CENTER</div>
 
     <div class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showOptions('Ninja Rift', false)">Ninja Rift</div>
-        <div class="faq-box" onclick="showOptions('Ninja Specter', false)">Ninja Specter</div>
-        <div class="faq-box" onclick="showOptions('Shinobi Revenge', true)">Shinobi Revenge</div>
-        <div class="faq-box" onclick="showOptions('Shinobi Warfare', false)">Shinobi Warfare</div>
-        <div class="faq-box" onclick="showOptions('Multi App', true)">Multi App</div>
+        <div class="faq-box" onclick="showOptions('Ninja Rift Anti Battle', true)">Ninja Rift Anti Battle</div>
+        <div class="faq-box" onclick="showOptions('Ninja Rift Unlocked Mod Menu V2', true)">Ninja Rift Unlocked Mod Menu V2</div>
+        <div class="faq-box" onclick="showOptions('Ninja Specter One Hit', true)">Ninja Specter One Hit</div>
+        <div class="faq-box" onclick="showOptions('Ninja Specter Skill Mod', true)">Ninja Specter Skill Mod</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Revenge Skip Battle', false)">Shinobi Revenge Skip Battle</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Revenge Unlocked Mod Menu V2', true)">Shinobi Revenge Unlocked Mod Menu V2</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Revenge Anime Mod', true)">Shinobi Revenge Anime Mod</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Warfare One Hit', true)">Shinobi Warfare One Hit</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Warfare Skill Mod', true)">Shinobi Warfare Skill Mod</div>
+        <div class="faq-box" onclick="showOptions('Multi App', false)">Multi App</div>
     </div>
 
     <div id="options" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Rift', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift', 'PC')">PC</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', 'PC')">PC</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
 
-    <div id="options-specter" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Specter', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter', 'PC')">PC</div>
+    <div id="options-unlocked" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', 'PC')">PC</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
 
-    <div id="options-revenge" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge', 'PC')">PC</div>
+    <div id="options-specter-hit" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', 'PC')">PC</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
 
-    <div id="options-warfare" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare', 'PC')">PC</div>
+    <div id="options-specter-skill" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-revenge-skip" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-revenge-unlocked" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-revenge-anime" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-warfare-hit" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-warfare-skill" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', 'PC')">PC</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
 
@@ -205,20 +248,41 @@
             }, 2000); // Delay for 2 seconds
         };
 
-        function showOptions(game, isReady) {
-            document.querySelectorAll('.faq-container').forEach(container => {
-                container.style.display = 'none';
-            });
-
-            if (game === 'Multi App') {
-                document.getElementById('options-multi').style.display = 'flex';
-            } else if (isReady) {
-                document.getElementById('options-revenge').style.display = 'flex';
-            } else {
-                document.getElementById('message').style.display = 'flex';
-                setTimeout(goBack, 1500);
-            }
+      function showOptions(game, isReady) {
+    document.querySelectorAll('.faq-container').forEach(container => {
+        container.style.display = 'none';
+    });
+    
+    if (isReady) {
+        // Show the message if isReady is true
+        document.getElementById('message').style.display = 'flex';
+        setTimeout(goBack, 1500); // Go back after 1.5 seconds
+    } else {
+        // Show the corresponding options if isReady is false
+        if (game === 'Multi App') {
+            document.getElementById('options-multi').style.display = 'flex';
+        } else if (game.includes('Ninja Rift')) {
+            document.getElementById('options').style.display = 'flex';
+        } else if (game.includes('Ninja Specter One Hit')) {
+            document.getElementById('options-specter-hit').style.display = 'flex';
+        } else if (game.includes('Ninja Specter Skill Mod')) {
+            document.getElementById('options-specter-skill').style.display = 'flex';
+        } else if (game.includes('Shinobi Revenge Skip Battle')) {
+            document.getElementById('options-revenge-skip').style.display = 'flex';
+        } else if (game.includes('Shinobi Revenge Unlocked Mod Menu V2')) {
+            document.getElementById('options-revenge-unlocked').style.display = 'flex';
+        } else if (game.includes('Shinobi Revenge Anime Mod')) {
+            document.getElementById('options-revenge-anime').style.display = 'flex';
+        } else if (game.includes('Shinobi Warfare One Hit')) {
+            document.getElementById('options-warfare-hit').style.display = 'flex';
+        } else if (game.includes('Shinobi Warfare Skill Mod')) {
+            document.getElementById('options-warfare-skill').style.display = 'flex';
+        } else {
+            document.getElementById('message').style.display = 'flex';
+            setTimeout(goBack, 1500);
         }
+    }
+}
 
         function goBack() {
             document.querySelectorAll('.faq-container').forEach(container => {
@@ -244,30 +308,57 @@
         }
 
         function getUrl(game, version) {
-            if (game === 'Ninja Rift') {
-                if (version === '32 Bit') return 'http://example.com/ninja_rift_32bit';
-                if (version === '64 Bit') return 'http://example.com/ninja_rift_64bit';
-                if (version === 'PC') return 'http://example.com/ninja_rift_pc';
-            }
-            if (game === 'Ninja Specter') {
-                if (version === '32 Bit') return 'http://example.com/ninja_specter_32bit';
-                if (version === '64 Bit') return 'http://example.com/ninja_specter_64bit';
-                if (version === 'PC') return 'http://example.com/ninja_specter_pc';
-            }
-            if (game === 'Shinobi Revenge') {
-                if (version === '32 Bit') return 'https://devuploads.com/079w0zhrwir0'; // Fixed URL
-                if (version === '64 Bit') return 'https://devuploads.com/fvefx3y85xwr'; // Fixed URL
-                if (version === 'PC') return 'https://devuploads.com/6gh160o2s9v9'; // Fixed URL
-            }
-            if (game === 'Shinobi Warfare') {
-                if (version === '32 Bit') return 'http://example.com/shinobi_warfare_32bit';
-                if (version === '64 Bit') return 'http://example.com/shinobi_warfare_64bit';
-                if (version === 'PC') return 'http://example.com/shinobi_warfare_pc';
-            }
-            if (game === 'Multi App') {
-                if (version === '32&64 Bit') return 'https://devuploads.com/ncis3fu4kn6y';
-            }
+            const links = {
+                'Ninja Rift Anti Battle': {
+                    '32 Bit': 'http://example.com/ninja_rift_anti_battle_32bit',
+                    '64 Bit': 'http://example.com/ninja_rift_anti_battle_64bit',
+                    'PC': 'http://example.com/ninja_rift_anti_battle_pc'
+                },
+                'Ninja Rift Unlocked Mod Menu V2': {
+                    '32 Bit': 'http://example.com/ninja_rift_unlocked_v2_32bit',
+                    '64 Bit': 'http://example.com/ninja_rift_unlocked_v2_64bit',
+                    'PC': 'http://example.com/ninja_rift_unlocked_v2_pc'
+                },
+                'Ninja Specter One Hit': {
+                    '32 Bit': 'http://example.com/ninja_specter_one_hit_32bit',
+                    '64 Bit': 'http://example.com/ninja_specter_one_hit_64bit',
+                    'PC': 'http://example.com/ninja_specter_one_hit_pc'
+                },
+                'Ninja Specter Skill Mod': {
+                    '32 Bit': 'http://example.com/ninja_specter_skill_mod_32bit',
+                    '64 Bit': 'http://example.com/ninja_specter_skill_mod_64bit',
+                    'PC': 'http://example.com/ninja_specter_skill_mod_pc'
+                },
+                'Shinobi Revenge Skip Battle': {
+                    '32 Bit': 'https://devuploads.com/079w0zhrwir0',
+                    '64 Bit': 'https://devuploads.com/fvefx3y85xwr',
+                    'PC': 'https://devuploads.com/6gh160o2s9v9'
+                },
+                'Shinobi Revenge Unlocked Mod Menu V2': {
+                    '32 Bit': 'https://devuploads.com/unlocked_v2_32bit',
+                    '64 Bit': 'https://devuploads.com/unlocked_v2_64bit',
+                    'PC': 'https://devuploads.com/unlocked_v2_pc'
+                },
+                'Shinobi Revenge Anime Mod': {
+                    '32 Bit': 'https://devuploads.com/anime_mod_32bit',
+                    '64 Bit': 'https://devuploads.com/anime_mod_64bit',
+                    'PC': 'https://devuploads.com/anime_mod_pc'
+                },
+                'Shinobi Warfare One Hit': {
+                    '32 Bit': 'http://example.com/shinobi_warfare_one_hit_32bit',
+                    '64 Bit': 'http://example.com/shinobi_warfare_one_hit_64bit',
+                    'PC': 'http://example.com/shinobi_warfare_one_hit_pc'
+                },
+                'Shinobi Warfare Skill Mod': {
+                    '32 Bit': 'http://example.com/shinobi_warfare_skill_mod_32bit',
+                    '64 Bit': 'http://example.com/shinobi_warfare_skill_mod_64bit',
+                    'PC': 'http://example.com/shinobi_warfare_skill_mod_pc'
+                },
+                'Multi App': {
+                    '32&64 Bit': 'https://devuploads.com/ncis3fu4kn6y'
+                }
+            };
+            return links[game][version];
         }
     </script>
 </body>
-</html>
