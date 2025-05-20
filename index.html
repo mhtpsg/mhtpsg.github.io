@@ -101,26 +101,40 @@
                 opacity: 0;
             }
         }
+    .faq-box {
+        background: linear-gradient(135deg, #4a90e2, #9013fe);
+        border-radius: 10px;
+        margin: 20px;
+        padding: 20px;
+        width: calc(25% - 40px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+        color: white;
+        font-weight: bold;
+        animation: slideIn 0.5s forwards; /* Animation for appearing */
+        text-align: center; /* Center text */
+        border: 2px solid transparent; /* Add border for hover effect */
+    }
 
+    .faq-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #9013fe, #4a90e2);
+        border-color: rgba(255, 255, 255, 0.3); /* Show border on hover */
+    }
+
+    @media (max-width: 768px) {
         .faq-box {
-            background: navy;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 20px;
-            padding: 20px;
-            width: calc(25% - 40px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            color: white;
-            font-weight: bold;
-            animation: slideIn 0.5s forwards; /* Animation for appearing */
+            width: calc(50% - 40px);
         }
+    }
 
-        .faq-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    @media (max-width: 480px) {
+        .faq-box {
+            width: 100%;
         }
+    }
 
         .loading {
             display: none;
@@ -138,16 +152,22 @@
             color: red;
             height: 100vh;
         }
+    .message-box {
+        background: linear-gradient(135deg, #ff4e50, #fc913a);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        border: 2px solid transparent; /* Add border for hover effect */
+        transition: background 0.3s, border-color 0.3s;
+    }
 
-        .message-box {
-            background: navy;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            color: red;
-        }
-
+    .message-box:hover {
+        background: linear-gradient(135deg, #fc913a, #ff4e50);
+        border-color: rgba(255, 255, 255, 0.3); /* Show border on hover */
+    }
         .loading-message {
             background: white;
             border: 1px solid #ccc;
