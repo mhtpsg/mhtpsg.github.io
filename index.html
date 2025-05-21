@@ -6,80 +6,123 @@
     <title>Mhantappu Download Center</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            overflow-y: auto; /* Allow vertical scrolling */
-            height: 100vh; /* Ensure the body takes full height */
-        }
+    font-family: 'Arial', sans-serif;
+    background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    overflow-y: auto;
+    height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+}
 
-        .faq-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            opacity: 1; /* Ensure it's visible */
-            transform: translateY(0); /* Reset transform */
-            animation: fadeInUp 0.5s forwards;
-            max-height: calc(100vh - 200px); /* Adjust height based on your layout */
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding: 20px; /* Add padding for content */
-            position: relative; /* Ensure it is positioned correctly */
-        }
-        
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    opacity: 1;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+    animation: slideIn 0.7s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .chat-icon {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 40px; /* Ukuran lebih kecil */
-            height: 40px; /* Ukuran lebih kecil */
-            background-color: #4a90e2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
- 
-.chat-icon::before {
-            content: '💬';
-            font-size: 15px; /* Ukuran ikon lebih kecil */
-            color: white;
-        }
- 
- .popup {
-     display: none;
-     position: fixed;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     background: rgba(0, 0, 0, 0.7);
-     justify-content: center;
-     align-items: center;
-     z-index: 10000;
- }
- 
- .popup-content {
-     background: white;
-     border-radius: 10px;
-     padding: 20px;
-     width: 90%;
-     max-width: 600px;
-     position: relative;
- }
- 
- .close-popup {
-     position: absolute;
-     top: 10px;
-     right: 10px;
-     cursor: pointer;
-     font-weight: bold;
-     color: #ff0000;
- }
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-      .loading-container {
+.chat-icon:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.chat-icon::before {
+    content: '💬';
+    font-size: 20px;
+    color: white;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.5s forwards;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    animation: popIn 0.5s ease forwards;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.close-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ff0000;
+    font-size: 28px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.close-popup:hover {
+    color: darkred;
+    transform: scale(1.1);
+}
+
+.loading-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,177 +131,163 @@
     color: #ffffff;
     font-size: 36px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    position: fixed; /* Tambahkan ini */
-    top: 0; /* Tambahkan ini */
-    left: 0; /* Tambahkan ini */
-    right: 0; /* Tambahkan ini */
-    z-index: 9999; /* Tambahkan ini */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    animation: fadeIn 1s forwards;
 }
 
-        .loading-text {
-            font-size: 48px;
-            animation: rainbow 1.5s infinite;
-        }
+.loading-text {
+    font-size: 48px;
+    animation: rainbow 1.5s infinite;
+}
 
-        @keyframes rainbow {
-            0% { color: red; }
-            14% { color: orange; }
-            28% { color: yellow; }
-            42% { color: green; }
-            57% { color: blue; }
-            71% { color: indigo; }
-            85% { color: violet; }
-            100% { color: red; }
-        }
+@keyframes rainbow {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffea00; }
+    42% { color: #7fff00; }
+    57% { color: #00ffea; }
+    71% { color: #007fff; }
+    85% { color: #3f00ff; }
+    100% { color: #ff00ff; }
+}
 
-        .title {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 48px;
-            animation: rainbow 1.5s infinite;
-        }
+.title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 60px;
+    animation: rainbow 2s infinite;
+    color: #ffffff;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
 
-        .subtitle {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 40px;
-            animation: rainbow 1.5s infinite;
-        }
+.subtitle {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    animation: rainbow 2s infinite;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.faq-box {
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    width: calc(25% - 40px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    color: navy;
+    font-weight: bold;
+    animation: fadeInUp 0.5s forwards, rgbAnimation 3s infinite alternate; /* Tambahkan animasi RGB */
+    text-align: center;
+    border: 2px solid #ffffff; /* Border putih tidak transparan */
+}
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
-        @keyframes slideOut {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-        }
+@keyframes rgbAnimation {
+    0% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
+    25% { background: linear-gradient(135deg, #e94e77, #f7c94c); }
+    50% { background: linear-gradient(135deg, #4ae2b2, #f74c94); }
+    75% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
+    100% { background: linear-gradient(135deg, #7f00ff, #e94e77); }
+}
+
+.faq-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: #ffea00; /* Warna border saat hover */
+}
+
+@media (max-width: 768px) {
     .faq-box {
-        background: linear-gradient(135deg, #4a90e2, #9013fe);
-        border-radius: 10px;
-        margin: 20px;
-        padding: 20px;
-        width: calc(25% - 40px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
-        color: white;
-        font-weight: bold;
-        animation: slideIn 0.5s forwards; /* Animation for appearing */
-        text-align: center; /* Center text */
-        border: 2px solid transparent; /* Add border for hover effect */
+        width: calc(50% - 40px);
     }
+}
 
-    .faq-box:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-        background: linear-gradient(135deg, #9013fe, #4a90e2);
-        border-color: rgba(255, 255, 255, 0.3); /* Show border on hover */
+@media (max-width: 480px) {
+    .faq-box {
+        width: 100%;
     }
+}
 
-    @media (max-width: 768px) {
-        .faq-box {
-            width: calc(50% - 40px);
-        }
-    }
+.loading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
 
-    @media (max-width: 480px) {
-        .faq-box {
-            width: 100%;
-        }
-    }
+.message {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: red;
+    height: 100vh;
+}
 
-        .loading {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            flex-direction: column;
-        }
+.message-box {
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: background 0.3s, border-color 0.3s;
+}
 
-        .message {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: red;
-            height: 100vh;
-        }
-    .message-box {
-        background: linear-gradient(135deg, #ff4e50, #fc913a);
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        color: white;
-        font-size: 24px;
-        text-align: center;
-        border: 2px solid transparent; /* Add border for hover effect */
-        transition: background 0.3s, border-color 0.3s;
-    }
+.message-box:hover {
+    background: linear-gradient(135deg, #fc913a, #ff4e50);
+    border-color: rgba(255, 255, 255, 0.4);
+}
 
-    .message-box:hover {
-        background: linear-gradient(135deg, #fc913a, #ff4e50);
-        border-color: rgba(255, 255, 255, 0.3); /* Show border on hover */
-    }
-        .loading-message {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            color: red;
-            font-size: 24px;
-            text-align: center;
-            display: none;
-        }
+.loading-message {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    color: red;
+    font-size: 24px;
+    text-align: center;
+    display: none;
+}
 
-        .back-button {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px auto;
-            display: block;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+.back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
 
-        .back-button:hover {
-            background-color: darkblue;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .faq-box {
-                width: calc(50% - 40px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .faq-box {
-                width: 100%;
-            }
-        }
+.back-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
     </style>
 </head>
 <body oncontextmenu="return false;">
