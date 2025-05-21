@@ -329,6 +329,7 @@
     <div class="faq-container" style="display: none;">
         <div class="faq-box" onclick="showOptions('Ninja Rift Anti Battle', true)">Ninja Rift Anti Battle</div>
         <div class="faq-box" onclick="showOptions('Ninja Rift Unlocked Mod Menu V2', true)">Ninja Rift Unlocked Mod Menu V2</div>
+        <div class="faq-box" onclick="showOptions('Ninja Rift Old Patch', true)">Ninja Rift Old Patch</div>
         <div class="faq-box" onclick="showOptions('Ninja Specter One Hit', true)">Ninja Specter One Hit</div>
         <div class="faq-box" onclick="showOptions('Ninja Specter Skill Mod', true)">Ninja Specter Skill Mod</div>
         <div class="faq-box" onclick="showOptions('Shinobi Revenge Skip Battle', false)">Shinobi Revenge Skip Battle</div>
@@ -373,6 +374,13 @@ function togglePopup() {
         <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
         <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
         <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', 'PC')">PC</div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="options-old-patch" class="faq-container" style="display: none;">
+        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '32 Bit')">32 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '64 Bit')">64 Bit</div>
+        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', 'PC')">PC</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
 
@@ -460,7 +468,13 @@ function togglePopup() {
                 if (game === 'Multi App') {
                     targetContainer = document.getElementById('options-multi');
                 } else if (game.includes('Ninja Rift')) {
-                    targetContainer = document.getElementById('options');
+                    if (game.includes('Unlocked Mod Menu V2')) {
+                        targetContainer = document.getElementById('options-unlocked');
+                    } else if (game.includes('Old Patch')) {
+                        targetContainer = document.getElementById('options-old-patch');
+                    } else {
+                        targetContainer = document.getElementById('options');
+                    }
                 } else if (game.includes('Ninja Specter One Hit')) {
                     targetContainer = document.getElementById('options-specter-hit');
                 } else if (game.includes('Ninja Specter Skill Mod')) {
@@ -525,6 +539,11 @@ function togglePopup() {
                     '64 Bit': 'http://example.com/ninja_rift_unlocked_v2_64bit',
                     'PC': 'http://example.com/ninja_rift_unlocked_v2_pc'
                 },
+                'Ninja Rift Old Patch': {
+                    '32 Bit': '',
+                    '64 Bit': 'http://example.com/ninja_rift_old_patch_64bit',
+                    'PC': 'http://example.com/ninja_rift_old_patch_pc'
+                },
                 'Ninja Specter One Hit': {
                     '32 Bit': 'http://example.com/ninja_specter_one_hit_32bit',
                     '64 Bit': 'http://example.com/ninja_specter_one_hit_64bit',
@@ -568,3 +587,4 @@ function togglePopup() {
         }
     </script>
 </body>
+</html>
