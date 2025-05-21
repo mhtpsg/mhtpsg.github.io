@@ -248,20 +248,34 @@
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    color: white;
+    color: red;
     font-size: 24px;
     text-align: center;
     border: 2px solid transparent;
-    transition: background 0.3s, border-color 0.3s;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    font-weight: bold; /* Menambahkan teks tebal */
+    animation: fadeInUp 0.5s forwards; /* Menambahkan animasi masuk */
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .message-box:hover {
     background: linear-gradient(135deg, #fc913a, #ff4e50);
     border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05); /* Efek zoom saat hover */
 }
 
 .loading-message {
-    background: white;
+    background: linear-gradient(135deg, #ff007f, #00ffea, #7f00ff, #ffea00);
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
@@ -269,6 +283,14 @@
     font-size: 24px;
     text-align: center;
     display: none;
+    font-weight: bold; /* Menambahkan teks tebal */
+    animation: loadingAnimation 3s infinite alternate; /* Animasi latar belakang */
+}
+
+@keyframes loadingAnimation {
+    0% { background: linear-gradient(135deg, #ff007f, #00ffea); }
+    50% { background: linear-gradient(135deg, #7f00ff, #ffea00); }
+    100% { background: linear-gradient(135deg, #ff007f, #00ffea); }
 }
 
 .back-button {
@@ -305,7 +327,7 @@
         <div class="faq-box" onclick="showOptions('Ninja Specter One Hit', true)">Ninja Specter One Hit</div>
         <div class="faq-box" onclick="showOptions('Ninja Specter Skill Mod', true)">Ninja Specter Skill Mod</div>
         <div class="faq-box" onclick="showOptions('Shinobi Revenge Skip Battle', false)">Shinobi Revenge Skip Battle</div>
-        <div class="faq-box" onclick="showOptions('Shinobi Revenge Unlocked Mod Menu V2', true)">Shinobi Revenge Unlocked Mod Menu V2</div>
+        <div class="faq-box" onclick="showOptions('Shinobi Revenge Unlocked Mod Menu V2', false)">Shinobi Revenge Unlocked Mod Menu V2</div>
         <div class="faq-box" onclick="showOptions('Shinobi Revenge Anime Mod', true)">Shinobi Revenge Anime Mod</div>
         <div class="faq-box" onclick="showOptions('Shinobi Warfare One Hit', true)">Shinobi Warfare One Hit</div>
         <div class="faq-box" onclick="showOptions('Shinobi Warfare Skill Mod', true)">Shinobi Warfare Skill Mod</div>
@@ -514,9 +536,9 @@ function togglePopup() {
                     'PC': 'https://devuploads.com/6gh160o2s9v9'
                 },
                 'Shinobi Revenge Unlocked Mod Menu V2': {
-                    '32 Bit': 'https://devuploads.com/unlocked_v2_32bit',
-                    '64 Bit': 'https://devuploads.com/unlocked_v2_64bit',
-                    'PC': 'https://devuploads.com/unlocked_v2_pc'
+                    '32 Bit': 'https://devuploads.com/ub16mwhjevl9',
+                    '64 Bit': 'https://devuploads.com/jql8z0ux65ky',
+                    'PC': 'https://devuploads.com/pncqfue7vdtv'
                 },
                 'Shinobi Revenge Anime Mod': {
                     '32 Bit': 'https://devuploads.com/anime_mod_32bit',
