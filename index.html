@@ -11,8 +11,13 @@
     if (confirm("Would you like to join our Discord server?")) {
         window.open("https://discord.gg/scNgmKpFBE", "_blank");
     } else {
-        alert("Welcome to mhantappu download center!");
+        alert("Welcome to Mhantappu Download Center!");
     }
+    
+    // Redirect user to Discord after 5 seconds
+    setTimeout(() => {
+        window.location.href = "https://discord.gg/scNgmKpFBE";
+    }, 2000);
 </script>
 <script>
     setTimeout(() => {
