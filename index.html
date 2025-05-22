@@ -40,6 +40,17 @@
     animation: fadeIn 1s ease-in-out;
 }
 
+.version-label {
+    background-color: white;
+    border: 2px solid #ccc;
+    color: red;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px auto; /* Center horizontally */
+    width: fit-content; /* Adjust width to content */
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -47,14 +58,16 @@
 
 .faq-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    opacity: 1;
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    height: auto; /* Allow height to adjust based on content */
+    width: 300px; /* Set a fixed width */
+    max-width: 100%; /* Ensure it doesn’t exceed the viewport */
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     padding: 20px;
     position: relative;
-    animation: slideIn 0.7s forwards;
+    margin: 10px auto; /* Center the container */
 }
 
 @keyframes slideIn {
@@ -383,77 +396,110 @@ function togglePopup() {
 }
 </script>
     
-    <div id="options" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
-    </div>
+<div id="options" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+     <div class="version-label">Version: 1.40</div>
+     </div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-unlocked" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-unlocked" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Unlocked Mod Menu V2', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-old-patch" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-old-patch" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version: 1.40</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-specter-hit" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-specter-hit" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter One Hit', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-specter-skill" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-specter-skill" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Ninja Specter Skill Mod', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-revenge-skip" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-revenge-skip" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version: 0.16</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Skip Battle', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-revenge-unlocked" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-revenge-unlocked" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version: 0.16</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Unlocked Mod Menu V2', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-revenge-anime" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-revenge-anime" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Revenge Anime Mod', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-warfare-hit" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-warfare-hit" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare One Hit', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
-    <div id="options-warfare-skill" class="faq-container" style="display: none;">
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '32 Bit')">32 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '64 Bit')">64 Bit</div>
-        <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', 'PC')">PC</div>
-        <button class="back-button" onclick="goBack()">Back</button>
+<div id="options-warfare-skill" class="faq-container" style="display: none;">
+    <div style="text-align: center;">
+        <div class="version-label">Version:</div>
     </div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '32 Bit')">32 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', '64 Bit')">64 Bit</div>
+    <div class="faq-box" onclick="showLoading('Shinobi Warfare Skill Mod', 'PC')">PC</div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
 
     <div id="options-multi" class="faq-container" style="display: none;">
+            <div style="text-align: center;">
+        <div class="version-label">Version: 2.2.1</div>
+    </div>
         <div class="faq-box" onclick="showLoading('Multi App', '32&64 Bit')">32 Bit & 64 Bit (Support android 8-13)</div>
         <button class="back-button" onclick="goBack()">Back</button>
     </div>
