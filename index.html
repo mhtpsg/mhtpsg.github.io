@@ -63,14 +63,17 @@
     height: auto; /* Allow height to adjust based on content */
     max-height: 70vh; /* Set a maximum height */
     overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     padding: 10px; /* Adjust padding */
     margin: 20px auto; /* Center the container */
 }
 
 .faq-box {
-    width: 80%; /* Set a smaller width */
+    width: 100%; /* Set width to 100% to fill the container */
     max-width: 300px; /* Limit maximum width */
     margin: 10px 0; /* Add margin for spacing */
+    border: none; /* Remove border */
+    background: rgba(255, 255, 255, 0.8); /* Add a subtle background */
 }
 
 @keyframes slideIn {
