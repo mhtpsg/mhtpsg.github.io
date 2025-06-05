@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Not Available</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #ff6f91, #c94b4e);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden; /* Mencegah scroll */
+        }
+        .popup {
+            position: fixed; /* Memastikan popup tetap di tengah */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Memposisikan tepat di tengah */
+            text-align: center;
+            color: white;
+            padding: 20px; /* Padding responsif */
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            width: 90%; /* Lebar responsif */
+            max-width: 400px; /* Lebar maksimum untuk desktop */
+            box-sizing: border-box; /* Memastikan padding tidak menambah lebar */
+        }
+        .popup h1 {
+            font-weight: bold;
+            font-size: 1.5rem; /* Ukuran font responsif */
+            text-shadow: 0 0 20px white;
+            margin: 0; /* Menghilangkan margin agar tidak menjorok */
+        }
+        .join-button {
+            display: inline-block;
+            margin-top: 15px; /* Mengurangi jarak atas tombol */
+            padding: 10px 20px; /* Padding tombol */
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem; /* Ukuran font tombol responsif */
+        }
+        .join-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <h1>32 BIT VERSION IS NOT AVAILABLE. IF YOU WANT 32 BIT VERSION, PLEASE REQUEST ON DISCORD</h1>
+        <a href="https://discord.gg/scNgmKpFBE" class="join-button">Join Discord</a>
+    </div>
+</body>
+</html>
