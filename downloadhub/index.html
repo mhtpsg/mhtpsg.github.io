@@ -79,8 +79,13 @@
     </div>
 
     <script>
-        let count32 = 0;
-        let count64 = 0;
+        // Ambil jumlah download dari localStorage
+        let count32 = parseInt(localStorage.getItem('count32')) || 0;
+        let count64 = parseInt(localStorage.getItem('count64')) || 0;
+
+        // Tampilkan jumlah download di halaman
+        document.getElementById('count32').innerText = count32;
+        document.getElementById('count64').innerText = count64;
 
         function download(version) {
             const popup = document.getElementById('popup');
@@ -89,13 +94,17 @@
                 popup.style.display = 'none';
                 if (version === '32') {
                     count32++;
+                    localStorage.setItem('count32', count32); // Simpan ke localStorage
                     document.getElementById('count32').innerText = count32;
+                    // Link untuk unduhan 32 bit
+                    window.location.href = `files/32Bits - Ninja Rift Unlocked V2.1 1.42.apk`; // Ganti dengan file 32 bit yang sesuai
                 } else {
                     count64++;
+                    localStorage.setItem('count64', count64); // Simpan ke localStorage
                     document.getElementById('count64').innerText = count64;
+                    // Link untuk unduhan 64 bit
+                    window.location.href = `files/64Bits - Ninja Rift Unlocked V2.1 1.42.apk`; // Ganti dengan file 64 bit yang sesuai
                 }
-                // Ganti URL dengan link file .apk yang Anda upload
-                window.location.href = `files/file${version}.apk`;
             }, 2000); // Simulasi waktu download
         }
     </script>
