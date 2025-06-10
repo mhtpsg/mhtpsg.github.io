@@ -6,358 +6,355 @@
     <title>Mhantappu Download Center</title>
     <link rel="shortcut icon" href="https://mhtpsg.github.io/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script>
-    if (confirm("Would you like to join our Discord server?")) {
-        window.open("https://discord.gg/scNgmKpFBE", "_blank");
-    } else {
-        alert("Welcome to Mhantappu Download Center!");
-    }
-</script>
-<script>
-    setTimeout(() => {
-        location.reload();
-    }, 60000); // Setiap 1 menit
-</script>
-        <!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Mhantappu Download Center" />
-<meta property="og:description" content="Download All Mod in here" />
-<meta property="og:image" content="https://mhtpsg.github.io/images/logo.png" />
-<meta property="og:url" content="https://mhtpsg.github.io" />
-<meta property="og:type" content="website" />
-<meta name="keywords" content="Ninja, Rift, ninja rift, Ninja Specter, ninja specter, Shinobi Revenge, shinobi revenge, Shinobi Warfare, shinobi warfare, ninja sage, Ninja Sage, mod menu, mod, ninja rift mod, ninja specter mod, shinobi saga mod, shinobi revenge mod, shinobi warfare mod, ninja saga mod">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script>
-    const script = document.createElement('script');
-    script.src = `script.js?v=${new Date().getTime()}`;
-    document.head.appendChild(script);
-</script>
+        if (confirm("Would you like to join our Discord server?")) {
+            window.open("https://discord.gg/scNgmKpFBE", "_blank");
+        } else {
+            alert("Welcome to Mhantappu Download Center!");
+        }
+    </script>
+    <script>
+        setTimeout(() => {
+            location.reload();
+        }, 60000); // Setiap 1 menit
+    </script>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mhantappu Download Center" />
+    <meta property="og:description" content="Download All Mod in here" />
+    <meta property="og:image" content="https://mhtpsg.github.io/images/logo.png" />
+    <meta property="og:url" content="https://mhtpsg.github.io" />
+    <meta property="og:type" content="website" />
+    <meta name="keywords" content="Ninja, Rift, ninja rift, Ninja Specter, ninja specter, Shinobi Revenge, shinobi revenge, Shinobi Warfare, shinobi warfare, ninja sage, Ninja Sage, mod menu, mod, ninja rift mod, ninja specter mod, shinobi saga mod, shinobi revenge mod, shinobi warfare mod, ninja saga mod">
+    <script>
+        const script = document.createElement('script');
+        script.src = `script.js?v=${new Date().getTime()}`;
+        document.head.appendChild(script);
+    </script>
     <style>
         body {
-    font-family: 'Arial', sans-serif;
-    background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    overflow-y: auto;
-    height: 100vh;
-    animation: fadeIn 1s ease-in-out;
-}
+            font-family: 'Arial', sans-serif;
+            background: url('https://ns-assets.ninjasage.id/landing/ns-assets/web_banner/fox_deity.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            overflow-y: auto;
+            height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .version-label {
+            background-color: white;
+            border: 2px solid #ccc;
+            color: red;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin: 10px auto; /* Center horizontally */
+            width: fit-content; /* Adjust width to content */
+        }
 
-.version-label {
-    background-color: white;
-    border: 2px solid #ccc;
-    color: red;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    margin: 10px auto; /* Center horizontally */
-    width: fit-content; /* Adjust width to content */
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        .faq-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            height: auto; /* Allow height to adjust based on content */
+            max-height: 70vh; /* Set a maximum height */
+            overflow-y: auto; /* Allow vertical scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            padding: 10px; /* Adjust padding */
+            margin: 20px auto; /* Center the container */
+        }
 
-.faq-container {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    height: auto; /* Allow height to adjust based on content */
-    max-height: 70vh; /* Set a maximum height */
-    overflow-y: auto; /* Allow vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    padding: 10px; /* Adjust padding */
-    margin: 20px auto; /* Center the container */
-}
+        .faq-box {
+            width: 100%; /* Set width to 100% to fill the container */
+            max-width: 300px; /* Limit maximum width */
+            margin: 10px 0; /* Add margin for spacing */
+            border: none; /* Remove border */
+            background: rgba(255, 255, 255, 0.8); /* Add a subtle background */
+        }
 
-.faq-box {
-    width: 100%; /* Set width to 100% to fill the container */
-    max-width: 300px; /* Limit maximum width */
-    margin: 10px 0; /* Add margin for spacing */
-    border: none; /* Remove border */
-    background: rgba(255, 255, 255, 0.8); /* Add a subtle background */
-}
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+        .chat-icon {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.chat-icon {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    width: 40px;
-    height: 40px;
-    background-color: #4a90e2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        .chat-icon:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
 
-.chat-icon:hover {
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
+        .chat-icon::before {
+            content: '💬';
+            font-size: 20px;
+            color: white;
+        }
 
-.chat-icon::before {
-    content: '💬';
-    font-size: 20px;
-    color: white;
-}
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeIn 0.5s forwards;
+        }
 
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    animation: fadeIn 0.5s forwards;
-}
+        .popup-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            animation: popIn 0.5s ease forwards;
+        }
 
-.popup-content {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    width: 90%;
-    max-width: 700px;
-    position: relative;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-    animation: popIn 0.5s ease forwards;
-}
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-@keyframes popIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 28px;
+            transition: color 0.3s, transform 0.3s;
+        }
 
-.close-popup {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #ff0000;
-    font-size: 28px;
-    transition: color 0.3s, transform 0.3s;
-}
+        .close-popup:hover {
+            color: darkred;
+            transform: scale(1.1);
+        }
 
-.close-popup:hover {
-    color: darkred;
-    transform: scale(1.1);
-}
+        .loading-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff007f, #7f00ff);
+            color: #ffffff;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            animation: fadeIn 1s forwards;
+        }
 
-.loading-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff007f, #7f00ff);
-    color: #ffffff;
-    font-size: 36px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    animation: fadeIn 1s forwards;
-}
+        .loading-text {
+            font-size: 48px;
+            animation: rainbow 1.5s infinite;
+        }
 
-.loading-text {
-    font-size: 48px;
-    animation: rainbow 1.5s infinite;
-}
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffea00; }
+            42% { color: #7fff00; }
+            57% { color: #00ffea; }
+            71% { color: #007fff; }
+            85% { color: #3f00ff; }
+            100% { color: #ff00ff; }
+        }
 
-@keyframes rainbow {
-    0% { color: #ff0000; }
-    14% { color: #ff7f00; }
-    28% { color: #ffea00; }
-    42% { color: #7fff00; }
-    57% { color: #00ffea; }
-    71% { color: #007fff; }
-    85% { color: #3f00ff; }
-    100% { color: #ff00ff; }
-}
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 60px;
+            animation: rainbow 2s infinite;
+            color: #ffffff;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
 
-.title {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 60px;
-    animation: rainbow 2s infinite;
-    color: #ffffff;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-}
+        .subtitle {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 40px;
+            animation: rainbow 2s infinite;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
 
-.subtitle {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 40px;
-    animation: rainbow 2s infinite;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
+        .faq-box {
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            border-radius: 20px;
+            margin: 20px;
+            padding: 20px;
+            width: calc(25% - 40px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            color: navy;
+            font-weight: bold;
+            animation: fadeInUp 0.5s forwards, rgbAnimation 3s infinite alternate; /* Tambahkan animasi RGB */
+            text-align: center;
+            border: 2px solid #ffffff; /* Border putih tidak transparan */
+        }
 
-.faq-box {
-    background: linear-gradient(135deg, #4a90e2, #9013fe);
-    border-radius: 20px;
-    margin: 20px;
-    padding: 20px;
-    width: calc(25% - 40px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    color: navy;
-    font-weight: bold;
-    animation: fadeInUp 0.5s forwards, rgbAnimation 3s infinite alternate; /* Tambahkan animasi RGB */
-    text-align: center;
-    border: 2px solid #ffffff; /* Border putih tidak transparan */
-}
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-@keyframes fadeInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+        @keyframes rgbAnimation {
+            0% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
+            25% { background: linear-gradient(135deg, #e94e77, #f7c94c); }
+            50% { background: linear-gradient(135deg, #4ae2b2, #f74c94); }
+            75% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
+            100% { background: linear-gradient(135deg, #7f00ff, #e94e77); }
+        }
 
-@keyframes rgbAnimation {
-    0% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
-    25% { background: linear-gradient(135deg, #e94e77, #f7c94c); }
-    50% { background: linear-gradient(135deg, #4ae2b2, #f74c94); }
-    75% { background: linear-gradient(135deg, #4a90e2, #9013fe); }
-    100% { background: linear-gradient(135deg, #7f00ff, #e94e77); }
-}
+        .faq-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: #ffea00; /* Warna border saat hover */
+        }
 
-.faq-box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    border-color: #ffea00; /* Warna border saat hover */
-}
+        @media (max-width: 768px) {
+            .faq-box {
+                width: calc(50% - 40px);
+            }
+        }
 
-@media (max-width: 768px) {
-    .faq-box {
-        width: calc(50% - 40px);
-    }
-}
+        @media (max-width: 480px) {
+            .faq-box {
+                width: 100%;
+            }
+        }
 
-@media (max-width: 480px) {
-    .faq-box {
-        width: 100%;
-    }
-}
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
 
-.loading {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    flex-direction: column;
-}
+        .message {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: red;
+            height: 100vh;
+        }
 
-.message {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: red;
-    height: 100vh;
-}
+        .message-box {
+            background: linear-gradient(135deg, #ff4e50, #fc913a);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            color: red;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s;
+            font-weight: bold; /* Menambahkan teks tebal */
+            animation: fadeInUp 0.5s forwards; /* Menambahkan animasi masuk */
+        }
 
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
+        .message-box:hover {
+            background: linear-gradient(135deg, #fc913a, #ff4e50);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05); /* Efek zoom saat hover */
+        }
 
-.message-box {
-    background: linear-gradient(135deg, #ff4e50, #fc913a);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    color: red;
-    font-size: 24px;
-    text-align: center;
-    border: 2px solid transparent;
-    transition: background 0.3s, border-color 0.3s, transform 0.3s;
-    font-weight: bold; /* Menambahkan teks tebal */
-    animation: fadeInUp 0.5s forwards; /* Menambahkan animasi masuk */
-}
+        .loading-message {
+            background: linear-gradient(135deg, #ff007f, #00ffea, #7f00ff, #ffea00);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            color: red;
+            font-size: 24px;
+            text-align: center;
+            display: none;
+            font-weight: bold; /* Menambahkan teks tebal */
+            animation: loadingAnimation 3s infinite alternate; /* Animasi latar belakang */
+        }
 
-@keyframes fadeInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+        @keyframes loadingAnimation {
+            0% { background: linear-gradient(135deg, #ff007f, #00ffea); }
+            50% { background: linear-gradient(135deg, #7f00ff, #ffea00); }
+            100% { background: linear-gradient(135deg, #ff007f, #00ffea); }
+        }
 
-.message-box:hover {
-    background: linear-gradient(135deg, #fc913a, #ff4e50);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05); /* Efek zoom saat hover */
-}
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+ border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
 
-.loading-message {
-    background: linear-gradient(135deg, #ff007f, #00ffea, #7f00ff, #ffea00);
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    color: red;
-    font-size: 24px;
-    text-align: center;
-    display: none;
-    font-weight: bold; /* Menambahkan teks tebal */
-    animation: loadingAnimation 3s infinite alternate; /* Animasi latar belakang */
-}
-
-@keyframes loadingAnimation {
-    0% { background: linear-gradient(135deg, #ff007f, #00ffea); }
-    50% { background: linear-gradient(135deg, #7f00ff, #ffea00); }
-    100% { background: linear-gradient(135deg, #ff007f, #00ffea); }
-}
-
-.back-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px auto;
-    display: block;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -368,6 +365,13 @@
 
     <div class="title">MHANTAPPU</div>
     <div class="subtitle">DOWNLOAD CENTER</div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <input type="text" id="searchInput" placeholder="Cari Mod..." style="padding: 10px; border: 2px solid #ccc; border-radius: 5px; width: 250px;">
+        <button onclick="searchMod()" style="padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 50%; cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+    </div>
 
     <div class="faq-container" style="display: none;">
         <div class="faq-box" onclick="showOptions('Ninja Rift Anti Battle', false)">Ninja Rift Anti Battle</div>
@@ -403,6 +407,32 @@
 function togglePopup() {
     const popup = document.getElementById('popup');
     popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function searchMod() {
+    var input, filter, faqContainer, faqBox, i, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+    faqContainer = document.querySelector('.faq-container');
+    faqBox = faqContainer.getElementsByClassName('faq-box');
+
+    if (filter === "") {
+        // Jika input kosong, tampilkan semua
+        for (i = 0; i < faqBox.length; i++) {
+            faqBox[i].style.display = "";
+        }
+    } else {
+        // Sembunyikan semua, lalu tampilkan yang cocok
+        for (i = 0; i < faqBox.length; i++) {
+            faqBox[i].style.display = "none";
+        }
+        for (i = 0; i < faqBox.length; i++) {
+            txtValue = faqBox[i].textContent || faqBox[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                faqBox[i].style.display = "";
+            }
+        }
+    }
 }
 </script>
     
@@ -605,7 +635,7 @@ function togglePopup() {
                 location.reload();
             }, 2000);
         }
-
+        
         function getUrl(game, version) {
             const links = {
                 'Ninja Rift Anti Battle': {
