@@ -69,13 +69,22 @@
         <td>
           <object>
             <param name="FlashVars" value="new=false" />
-            <embed width="1280" height="720" src="https://mhtpsg.github.io/swunlockedmodonline/swf/shinobiwarfare_web.swf">
+            <embed width="1280" height="720" src="" id="swfEmbed">
           </object>
         </td>
       </tr>
     </table>
   </div>
   
+  <script>
+    // Base URL for CDN
+    const cdnBaseUrl = "https://shinobiwarfare.fra1.cdn.digitaloceanspaces.com/data/swf/";
+    // Full URL for the SWF file
+    const swfFileName = "swf/shinobiwarfare_web.swf";
+    const swfUrl = cdnBaseUrl + swfFileName;
+    document.getElementById("swfEmbed").setAttribute("src", swfUrl);
+    console.log("SWF URL:", swfUrl);
+  </script>
   
 </body>
 
