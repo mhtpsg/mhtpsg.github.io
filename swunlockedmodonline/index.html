@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <title>
-    Shinobi Warfare
-  </title>
+  <title>Shinobi Warfare</title>
   
   <style>
     .table-content {
@@ -52,6 +50,9 @@
       -webkit-background-size: cover;
     }
   </style>
+  
+  <!-- Ruffle Library -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
 
 <body class="bg">
@@ -67,22 +68,26 @@
       </tr>
       <tr>
         <td>
-          <object>
-            <param name="FlashVars" value="new=false" />
-            <embed width="1280" height="720" src="" id="swfEmbed">
-          </object>
+          <div id="ruffleContainer" style="width: 1280px; height: 720px;"></div>
         </td>
       </tr>
     </table>
   </div>
   
   <script>
+    // Initialize Ruffle
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    document.getElementById("ruffleContainer").appendChild(player);
+    
     // Base URL for CDN
     const cdnBaseUrl = "https://shinobiwarfare.fra1.cdn.digitaloceanspaces.com/data/swf/";
     // Full URL for the SWF file
     const swfFileName = "swf/shinobiwarfare_web.swf";
     const swfUrl = cdnBaseUrl + swfFileName;
-    document.getElementById("swfEmbed").setAttribute("src", swfUrl);
+    
+    // Load the SWF file
+    player.load(swfUrl);
     console.log("SWF URL:", swfUrl);
   </script>
   
