@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script>
-        if (confirm("Join our Discord server to follow giveaway on #giveaways channel!")) {
+        if (confirm("Join our Discord to know a new current mod!")) {
             window.open("https://discord.gg/scNgmKpFBE", "_blank");
         } else {
             alert("Welcome to Mhantappu Download Center!");
@@ -287,7 +287,7 @@
             color: red;
             height: 100vh;
         }
-
+        
         .message-box {
             background: linear-gradient(135deg, #ff4e50, #fc913a);
             border-radius: 20px;
@@ -375,7 +375,7 @@
 
     <div class="faq-container" style="display: none;">
         <div class="faq-box" onclick="showOptions('Ninja Rift Anti Battle', false)">Ninja Rift Anti Battle</div>
-        <div class="faq-box" onclick="showOptions('Ninja Rift Unlocked Mod Menu V2', false)">Ninja Rift Unlocked V2.1</div>
+        <div class="faq-box" onclick="showOptions('Ninja Rift Unlocked Mod Menu V2', true)">Ninja Rift Unlocked V2.1</div>
         <div class="faq-box" onclick="showOptions('Ninja Rift Old Patch', false)">Ninja Rift Old Patch</div>
         <div class="faq-box" onclick="showOptions('Ninja Specter One Hit', true)">Ninja Specter One Hit</div>
         <div class="faq-box" onclick="showOptions('Ninja Specter Skill Mod', false)">Ninja Specter Skill Mod</div>
@@ -384,7 +384,7 @@
         <div class="faq-box" onclick="showOptions('Shinobi Revenge Anime Mod', false)">Shinobi Revenge Anime Mod</div>
         <div class="faq-box" onclick="showOptions('Shinobi Warfare One Hit', true)">Shinobi Warfare One Hit</div>
         <div class="faq-box" onclick="showOptions('Shinobi Warfare Skill Mod', true)">Shinobi Warfare Skill Mod</div>
-        <div class="faq-box" onclick="showOptions('Multi App', false)">Multi App</div>
+        <div class="faq-box" onclick="showOptions('Multi App', true)">Multi App</div>
     </div>
     
    <div class="chat-icon" onclick="togglePopup()"></div>
@@ -438,7 +438,7 @@ function searchMod() {
     
 <div id="options" class="faq-container" style="display: none;">
     <div style="text-align: center;">
-     <div class="version-label">Version: 1.42</div>
+     <div class="version-label">Version: 1.43</div>
      </div>
     <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '32 Bit')">32 Bit</div>
     <div class="faq-box" onclick="showLoading('Ninja Rift Anti Battle', '64 Bit')">64 Bit</div>
@@ -458,7 +458,7 @@ function searchMod() {
 
 <div id="options-old-patch" class="faq-container" style="display: none;">
     <div style="text-align: center;">
-        <div class="version-label">Version: 1.42</div>
+        <div class="version-label">Version: 1.43</div>
     </div>
     <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '32 Bit')">32 Bit</div>
     <div class="faq-box" onclick="showLoading('Ninja Rift Old Patch', '64 Bit')">64 Bit</div>
@@ -552,9 +552,10 @@ function searchMod() {
 <div id="message" class="message">
     <div class="message-box" style="text-align: center;">
         <img src="images/300bucks.png" alt="Image" style="width: 100%; max-width: 300px; display: block; margin: 0 auto;">
-        <div class="version-label">NOT READY FOR THE MOD!</div>
+        <div class="version-label">NOT READY/NOT AVAILABLE!</div>
     </div>
 </div>
+
 
     <script>
         window.onload = function() {
@@ -640,9 +641,9 @@ function searchMod() {
         function getUrl(game, version) {
             const links = {
                 'Ninja Rift Anti Battle': {
-                    '32 Bit': 'https://devuploads.com/eabdgx7ikerx',
-                    '64 Bit': 'https://devuploads.com/hjnr392z0b93',
-                    'PC': 'https://devuploads.com/k6u4itua5j31'
+                    '32 Bit': 'https://devuploads.com/d9sbwqy6drhk',
+                    '64 Bit': 'https://devuploads.com/ek65trp867v3',
+                    'PC': 'https://devuploads.com/eqkr3wza2xbf'
                 },
                 'Ninja Rift Unlocked Mod Menu V2': {
                     '32 Bit': 'https://devuploads.com/lsalf9eacjsa',
@@ -650,9 +651,9 @@ function searchMod() {
                     'PC': 'https://devuploads.com/1j0kcmf4mbpn'
                 },
                 'Ninja Rift Old Patch': {
-                    '32 Bit': 'https://devuploads.com/h0sxc853s8tl',
-                    '64 Bit': 'https://devuploads.com/htswsw8oc386',
-                    'PC': 'https://devuploads.com/2mqipk8jg1ow'
+                    '32 Bit': 'https://devuploads.com/lma1p249saoc',
+                    '64 Bit': 'https://devuploads.com/p47mv93az3ke',
+                    'PC': 'https://devuploads.com/ae6k5w70it1p'
                 },
                 'Ninja Specter One Hit': {
                     '32 Bit': 'http://example.com/ninja_specter_one_hit_32bit',
