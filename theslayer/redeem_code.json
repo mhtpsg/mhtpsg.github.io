@@ -1,0 +1,20 @@
+{
+  "codes": {
+    "TENG-UFEA-THER-CODE": {
+      "reward_type": "tengu_feather",
+      "amount": 3,
+      "description": "3 Tengu Feathers",
+      "active": true,
+      "expiry_date": "2025-12-31"
+    },
+    "CHAR-GRAFF-FREE-2025": {
+      "reward_type": "character",
+      "character": "Graffiti",
+      "description": "Graffiti Character",
+      "active": true,
+      "expiry_date": "2025-12-31"
+    }
+  },
+  "version": "1.0",
+  "last_updated": "2025-01-01"
+}
