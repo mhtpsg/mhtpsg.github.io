@@ -1,0 +1,17 @@
+{
+  "summer_event": {
+    "start_date": "2025-08-05",
+    "end_date": "2025-08-10",
+    "active": true,
+    "title": "Summer Event 2025",
+    "description": "Join the exciting summer event with special rewards!"
+  },
+  "winter_event": {
+    "start_date": "2025-12-20",
+    "end_date": "2025-12-31",
+    "active": false,
+    "title": "Winter Event 2025",
+    "description": "Winter wonderland event coming soon!"
+  },
+  "last_updated": "2025-08-05T10:00:00Z"
+}
