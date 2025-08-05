@@ -13,6 +13,17 @@
       "description": "Graffiti Character",
       "active": true,
       "expiry_date": "2025-12-31"
+    },
+    "SMRR-CODE-2025-MTRL": {
+      "reward_type": "summer_materials",
+      "rewards": {
+        "sakura": 5,
+        "water": 5,
+        "black_water": 5
+      },
+      "description": "Summer Materials Pack: 5 Sakura, 5 Water, 5 Black Water",
+      "active": true,
+      "expiry_date": "2025-12-31"
     }
   },
   "version": "1.0",
