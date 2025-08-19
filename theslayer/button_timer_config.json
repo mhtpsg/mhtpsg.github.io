@@ -1,4 +1,10 @@
 {
+  "maintenance": {
+    "enabled": true,
+    "message": "The game is currently under maintenance. Please try again later.",
+    "start_time": "02:00",
+    "end_time": "04:00"
+  },
   "hero_knight_boss": {
     "start_hour": 6,
     "end_hour": 18,
