@@ -19,5 +19,24 @@
     "start_hour": 20,
     "end_hour": 22,
     "name": "Character Fusion"
+  },
+  "summer_event": {
+    "start_hour": 6,
+    "end_hour": 23,
+    "name": "Summer Event",
+    "date_restrictions": {
+      "2025": {
+        "start_month": 8,
+        "start_day": 19,
+        "end_month": 11,
+        "end_day": 19
+      },
+      "default": {
+        "start_month": 7,
+        "start_day": 1,
+        "end_month": 10,
+        "end_day": 1
+      }
+    }
   }
 }
