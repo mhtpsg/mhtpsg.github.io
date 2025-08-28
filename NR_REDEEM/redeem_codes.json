@@ -2,9 +2,7 @@
   "codes": {
     "MHTP-EMBLEM+": ["hair_1000_0", "hair_1000_1", "set_1000_0", "set_1000_1", "wpn_1000", "back_1000", "accessory_1000"],
     "MHTP-50RDC": ["wpn_848"],
-    "MHTP-YOAKE": ["wpn_413"],
-    "NEW-CODE-2025": ["wpn_1001"],
-    "CHAMP-NR": ["set_1005_0"]
+    "MHTP-YOAKE": ["wpn_413"]
   },
   "version": "1.1",
   "last_updated": "2024-12-20"
