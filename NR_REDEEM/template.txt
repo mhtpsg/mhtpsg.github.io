@@ -1,0 +1,69 @@
+{
+  "mails": [
+    {
+      "mail_id": "info_001",
+      "mail_title": "Welcome to Ninja Realm!",
+      "mail_sender": "Game Master",
+      "mail_body": "Selamat datang di Ninja Realm! Nikmati petualangan ninja terbaik dan jadilah shinobi terkuat di dunia ini. Jangan lupa untuk login setiap hari untuk mendapatkan bonus harian!",
+      "mail_type": 1,
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    },
+    {
+      "mail_id": "friend_001",
+      "mail_title": "Friend Request dari ShadowNinja",
+      "mail_sender": "System",
+      "mail_body": "Player ShadowNinja ingin berteman dengan Anda. Terima permintaan pertemanan ini untuk dapat bermain bersama dan saling membantu dalam misi!",
+      "mail_type": 2,
+      "friend_id": "12345",
+      "friend_name": "ShadowNinja",
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    },
+    {
+      "mail_id": "clan_001",
+      "mail_title": "Clan Invitation: DragonSlayers",
+      "mail_sender": "Clan Master",
+      "mail_body": "Anda telah diundang untuk bergabung dengan clan 'DragonSlayers'. Clan kami adalah salah satu clan terkuat dengan member yang aktif dan solid. Bergabunglah dengan kami!",
+      "mail_type": 3,
+      "clan_id": "67890",
+      "clan_name": "DragonSlayers",
+      "inviter_name": "DragonMaster99",
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    },
+    {
+      "mail_id": "auto_reward_001",
+      "mail_title": "Achievement Unlocked: First Victory",
+      "mail_sender": "Achievement System",
+      "mail_body": "Selamat! Anda telah membuka achievement 'First Victory' dengan memenangkan pertarungan pertama Anda. Reward telah otomatis ditambahkan ke inventory Anda.",
+      "mail_type": 4,
+      "mail_rewards": "gold_5000,exp_1000",
+      "achievement_id": "first_victory",
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    },
+    {
+      "mail_id": "claimable_001",
+      "mail_title": "Christmas Special Reward!",
+      "mail_sender": "Event Manager",
+      "mail_body": "Ho ho ho! Santa telah meninggalkan hadiah spesial untuk Anda! Klaim sekarang juga untuk mendapatkan item eksklusif Christmas yang terbatas. Jangan sampai terlewat!",
+      "mail_type": 5,
+      "mail_rewards": "gold_50000,weapon_christmas_katana_legendary,back_santa_wings_epic,hair_santa_hat_rare,accessory_christmas_ring_epic,material_69_100,token_1000",
+      "event_id": "christmas_2024",
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    },
+    {
+      "mail_id": "logo_001",
+      "mail_title": "Select Your Crew Logo",
+      "mail_sender": "Crew System",
+      "mail_body": "Saatnya memilih logo untuk crew Anda! Pilih dari berbagai desain logo yang tersedia untuk merepresentasikan identitas crew Anda di battlefield.",
+      "mail_type": 6,
+      "crew_id": "crew_12345",
+      "available_logos": ["logo_001", "logo_002", "logo_003", "logo_004"],
+      "mail_viewed": 0,
+      "sent_date": "25/12/2024"
+    }
+  ]
+}
