@@ -2,7 +2,7 @@
   "codes": [
     {
       "code": "FREE-CODE-ITEM-GEAR",
-      "validUntil": "2024-12-31T23:59:59",
+      "validUntil": "2025-12-31T23:59:59",
       "maxRedeems": 5,
       "redeemed": 0,
       "rewards": {
@@ -15,7 +15,7 @@
     },
     {
       "code": "NEWB-IEGF-TFRE-E100",
-      "validUntil": "2024-12-25T23:59:59",
+      "validUntil": "2025-12-25T23:59:59",
       "maxRedeems": 5,
       "redeemed": 0,
       "rewards": {
@@ -28,7 +28,7 @@
     },
     {
       "code": "FREE-WEEK-ENDC-ODE1",
-      "validUntil": "2024-12-31T23:59:59",
+      "validUntil": "2025-12-31T23:59:59",
       "maxRedeems": 3,
       "redeemed": 0,
       "weekendOnly": true,
