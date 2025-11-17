@@ -1,0 +1,44 @@
+{
+  "codes": [
+    {
+      "code": "FREE-CODE-ITEM-GEAR",
+      "validUntil": "2024-12-31T23:59:59",
+      "maxRedeems": 5,
+      "redeemed": 0,
+      "rewards": {
+        "type": "random",
+        "gold": [50, 150],
+        "exp": [50, 150],
+        "skillPoints": [1, 2],
+        "itemChance": 0.3
+      }
+    },
+    {
+      "code": "NEWB-IEGF-TFRE-E100",
+      "validUntil": "2024-12-25T23:59:59",
+      "maxRedeems": 5,
+      "redeemed": 0,
+      "rewards": {
+        "type": "random",
+        "gold": [100, 150],
+        "exp": [75, 125],
+        "skillPoints": [1, 2],
+        "itemChance": 0.4
+      }
+    },
+    {
+      "code": "FREE-WEEK-ENDC-ODE1",
+      "validUntil": "2024-12-31T23:59:59",
+      "maxRedeems": 3,
+      "redeemed": 0,
+      "weekendOnly": true,
+      "rewards": {
+        "type": "premium",
+        "gold": [200, 250],
+        "exp": [200, 250],
+        "skillPoints": [2, 5],
+        "itemChance": 0.5
+      }
+    }
+  ]
+}
