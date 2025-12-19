@@ -37,12 +37,11 @@
         }
         
         /* Hide hamburger when overlay is active */
-.hamburger-menu.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
+        .hamburger-menu.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
         @keyframes floatBubbles {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
@@ -255,29 +254,28 @@
             opacity: 0.8;
         }
 
-/* Close Button */
-.close-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    /* Pindah dari left ke right */
-    z-index: 1001;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(100, 181, 246, 0.3);
-    color: #fff;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-}
+        /* Close Button */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            color: #fff;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
 
         .close-button.active {
             opacity: 1;
@@ -334,7 +332,7 @@
         /* Main Content Grid */
         .content-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr;
             gap: 40px;
             max-width: 1400px;
             width: 100%;
@@ -418,107 +416,10 @@
             line-height: 1.4;
         }
 
-        /* Partners Section */
-        .partners-section {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .partners-header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid rgba(100, 181, 246, 0.3);
-        }
-
-        .partners-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #64b5f6;
-            text-shadow: 0 2px 10px rgba(100, 181, 246, 0.3);
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .partner-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            padding: 20px 15px;
-            text-decoration: none;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(100, 181, 246, 0.15);
-            position: relative;
-            overflow: hidden;
-            min-height: 100px;
-            justify-content: center;
-        }
-
-        .partner-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(100, 181, 246, 0.1), transparent);
-            transform: translateY(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .partner-card:hover::before {
-            transform: translateY(100%);
-        }
-
-        .partner-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(100, 181, 246, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .partner-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
-        }
-
-        .partner-card:hover .partner-icon {
-            transform: scale(1.1);
-        }
-
-        .partner-name {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #64b5f6;
-        }
-
         /* Animation Delays */
         .link-card:nth-child(1) { animation: slideInUp 0.6s ease-out 0.1s both; }
         .link-card:nth-child(2) { animation: slideInUp 0.6s ease-out 0.2s both; }
         .link-card:nth-child(3) { animation: slideInUp 0.6s ease-out 0.3s both; }
-        .link-card:nth-child(4) { animation: slideInUp 0.6s ease-out 0.4s both; }
-        .link-card:nth-child(5) { animation: slideInUp 0.6s ease-out 0.5s both; }
-
-        .partner-card:nth-child(1) { animation: slideInRight 0.6s ease-out 0.6s both; }
-        .partner-card:nth-child(2) { animation: slideInRight 0.6s ease-out 0.7s both; }
-        .partner-card:nth-child(3) { animation: slideInRight 0.6s ease-out 0.8s both; }
 
         @keyframes fadeInDown {
             from {
@@ -553,34 +454,8 @@
             }
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .partners-section {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
-
             .video-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
@@ -609,25 +484,6 @@
 
             .main-links {
                 grid-template-columns: 1fr;
-            }
-
-            .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-
-            .partner-card {
-                padding: 15px 10px;
-                min-height: 90px;
-            }
-
-            .partner-icon {
-                width: 28px;
-                height: 28px;
-            }
-
-            .partner-name {
-                font-size: 0.9rem;
             }
 
             .link-card {
@@ -676,33 +532,6 @@
                 min-height: 120px;
             }
 
-            .partners-header {
-                padding: 15px;
-            }
-
-            .partners-title {
-                font-size: 1.5rem;
-            }
-
-            .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .partner-card {
-                padding: 12px 8px;
-                min-height: 85px;
-            }
-
-            .partner-icon {
-                width: 24px;
-                height: 24px;
-            }
-
-            .partner-name {
-                font-size: 0.8rem;
-            }
-
             .video-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -720,10 +549,6 @@
         /* Hover effects untuk touch devices */
         @media (hover: none) {
             .link-card:active {
-                transform: scale(0.95);
-            }
-
-            .partner-card:active {
                 transform: scale(0.95);
             }
 
@@ -810,10 +635,6 @@
         .link-card {
             will-change: transform;
         }
-
-        .partner-card {
-            will-change: transform;
-        }
     </style>
 </head>
 <body>
@@ -841,143 +662,66 @@
     <!-- Fullscreen Overlay -->
     <div class="fullscreen-overlay" id="fullscreenOverlay">
         <div class="overlay-content">
-            <h1 class="overlay-title">NS Nulled Project</h1>
+            <h1 class="overlay-title">Dont Forget</h1>
             
-            <!-- NS Nulled Project Section -->
-            <div class="mod-section">
-                <h2 class="section-title">NS Nulled Project</h2>
-                <div class="video-grid">
-                    <div class="youtube-card" onclick="openVideo('XgkYjNJcQpI')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/XgkYjNJcQpI/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">NS Nulled PvP</div>
-                        <div class="video-channel">NS Nulled</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('Vj5hj7r47ow')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/Vj5hj7r47ow/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">NS Nulled Village</div>
-                        <div class="video-channel">NS Nulled</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('lNd-ZNjunos')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/lNd-ZNjunos/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">NS Nulled Menu</div>
-                        <div class="video-channel">NS Nulled</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('0A-Gbmf8rDQ')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/0A-Gbmf8rDQ/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">NS Nulled PvP Lobby</div>
-                        <div class="video-channel">NS Nulled</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Xtra Mod Section -->
-            <div class="mod-section">
-                <h2 class="section-title">Xtra Mod</h2>
-                <div class="video-grid">
-                    <div class="youtube-card" onclick="openVideo('4V1FrtS6d44')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/4V1FrtS6d44/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Xtra Shinobi Warfare Mod</div>
-                        <div class="video-channel">Xtra</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('eEtmNbpwv4A')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/eEtmNbpwv4A/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Xtra Panel</div>
-                        <div class="video-channel">Xtra</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('Q2imJizYVPM')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/Q2imJizYVPM/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Xtra Ninja Kaizen Mod</div>
-                        <div class="video-channel">Xtra</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Konoha Mod Section -->
-            <div class="mod-section">
-                <h2 class="section-title">Konoha Mod</h2>
-                <div class="video-grid">
-                    <div class="youtube-card" onclick="openVideo('XrFSAME9KUQ')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/XrFSAME9KUQ/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Konoha Ninja Rift Mod</div>
-                        <div class="video-channel">Konoha</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('OfzcRhbGWjk')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/OfzcRhbGWjk/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Konoha Shinobi Warfare Mod</div>
-                        <div class="video-channel">Konoha</div>
-                    </div>
-                    <div class="youtube-card" onclick="openVideo('H9Pi9mKrPIE')">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/H9Pi9mKrPIE/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                            <div class="play-button"></div>
-                        </div>
-                        <div class="video-title">Konoha Shinobi Revenge Mod</div>
-                        <div class="video-channel">Konoha</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- My Mod Section -->
             <div class="mod-section">
-                <h2 class="section-title">My Mod</h2>
+                <h2 class="section-title">To Subscribe</h2>
                 <div class="video-grid">
-                    <div class="youtube-card" onclick="openVideo('5wv2PDTO87o')">
+                    <div class="youtube-card" onclick="openVideo('E2WHUc9J5WA')">
                         <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/5wv2PDTO87o/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <img src="https://img.youtube.com/vi/E2WHUc9J5WA/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
                             <div class="play-button"></div>
                         </div>
-                        <div class="video-title">Shinobi Revenge Anime Mod</div>
+                        <div class="video-title">Ninja Rift Anti Battle</div>
                         <div class="video-channel">Kodokers</div>
                     </div>
-                    <div class="youtube-card" onclick="openVideo('SG2Hr5bZh1k')">
+                    <div class="youtube-card" onclick="openVideo('b5hrGGfPDw8')">
                         <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/SG2Hr5bZh1k/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <img src="https://img.youtube.com/vi/b5hrGGfPDw8/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
                             <div class="play-button"></div>
                         </div>
-                        <div class="video-title">Ninja Rift Old Patch Mod</div>
+                        <div class="video-title">Ninja Rift Everything Unlocked</div>
                         <div class="video-channel">Kodokers</div>
                     </div>
-                    <div class="youtube-card" onclick="openVideo('odJj_fN2_0k')">
+                    <div class="youtube-card" onclick="openVideo('oUgdSKP_NvU')">
                         <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/odJj_fN2_0k/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <img src="https://img.youtube.com/vi/oUgdSKP_NvU/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
                             <div class="play-button"></div>
                         </div>
-                        <div class="video-title">Ninja Specter Skill Mod</div>
+                        <div class="video-title">Ninja Rift Anniversary Old Patch</div>
                         <div class="video-channel">Kodokers</div>
                     </div>
-                    <div class="youtube-card" onclick="openVideo('nrXsNFFSZkQ')">
+                    <div class="youtube-card" onclick="openVideo('4PfarZb4saI')">
                         <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/nrXsNFFSZkQ/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <img src="https://img.youtube.com/vi/4PfarZb4saI/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
                             <div class="play-button"></div>
                         </div>
-                        <div class="video-title">Shinobi Revenge Skip Battle</div>
+                        <div class="video-title">Ninja Specter Everything Unlocked</div>
+                        <div class="video-channel">Kodokers</div>
+                    </div>
+                    <div class="youtube-card" onclick="openVideo('FM6MVkJ-uM8')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/FM6MVkJ-uM8/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-title">Shinobi Warfare Skip Battle</div>
+                        <div class="video-channel">Kodokers</div>
+                    </div>
+                    <div class="youtube-card" onclick="openVideo('W3ig0A050Dk')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/W3ig0A050Dk/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-title">Ninja Specter Skip Battle</div>
+                        <div class="video-channel">Kodokers</div>
+                    </div>
+                    <div class="youtube-card" onclick="openVideo('3msWVhGfldk')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/3msWVhGfldk/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-title">Shinobi Warfare Everything Unlocked</div>
                         <div class="video-channel">Kodokers</div>
                     </div>
                 </div>
@@ -1013,78 +757,42 @@
                     <div class="link-title">Saweria</div>
                     <div class="link-description">Support my work</div>
                 </a>
-
-                <a href="https://play.google.com/store/apps/details?id=ru.iiec.pydroid3" class="link-card" target="_blank">
-                    <img src="images/pydroid3.png" alt="Pydroid3" class="link-icon">
-                    <div class="link-title">Pydroid3</div>
-                    <div class="link-description">Python IDE for Android - Used for Flask verification in games</div>
-                </a>
-
-                <a href="https://code.visualstudio.com/download" class="link-card" target="_blank">
-                    <img src="images/vscode.png" alt="VS Code" class="link-icon">
-                    <div class="link-title">VS Code</div>
-                    <div class="link-description">Professional code editor - Used for Flask verification in games</div>
-                </a>
-            </div>
-
-            <!-- Partners Section -->
-            <div class="partners-section">
-                <div class="partners-header">
-                    <h2 class="partners-title">My Partners</h2>
-                </div>
-                
-                <div class="partners-grid">
-                    <a href="https://discord.gg/d8sVceBeZ4" class="partner-card" target="_blank">
-                        <img src="images/discord.png" alt="Discord" class="partner-icon">
-                        <div class="partner-name">Xtra</div>
-                    </a>
-
-                    <a href="https://discord.gg/hwdGuaTxA9" class="partner-card" target="_blank">
-                        <img src="images/discord.png" alt="Discord" class="partner-icon">
-                        <div class="partner-name">Konoha</div>
-                    </a>
-
-                    <a href="https://discord.gg/SXJ6cFUMWM" class="partner-card" target="_blank">
-                        <img src="images/discord.png" alt="Discord" class="partner-icon">
-                        <div class="partner-name">NS Nulled</div>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
 
     <script>
-// Hamburger menu functionality
-const hamburgerMenu = document.getElementById('hamburgerMenu');
-const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-const closeButton = document.getElementById('closeButton');
+        // Hamburger menu functionality
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+        const closeButton = document.getElementById('closeButton');
 
         hamburgerMenu.addEventListener('click', function() {
-    hamburgerMenu.classList.add('active');
-    hamburgerMenu.classList.add('hide'); // Hide hamburger button
-    fullscreenOverlay.classList.add('active');
-    closeButton.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
+            hamburgerMenu.classList.add('active');
+            hamburgerMenu.classList.add('hide');
+            fullscreenOverlay.classList.add('active');
+            closeButton.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
 
         closeButton.addEventListener('click', function() {
-    hamburgerMenu.classList.remove('active');
-    hamburgerMenu.classList.remove('hide'); // Show hamburger button again
-    fullscreenOverlay.classList.remove('active');
-    closeButton.classList.remove('active');
-    document.body.style.overflow = 'auto';
-});
+            hamburgerMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('hide');
+            fullscreenOverlay.classList.remove('active');
+            closeButton.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
 
-// Close overlay when clicking outside content
-fullscreenOverlay.addEventListener('click', function(e) {
-    if (e.target === fullscreenOverlay) {
-        hamburgerMenu.classList.remove('active');
-        hamburgerMenu.classList.remove('hide'); // Show hamburger button again
-        fullscreenOverlay.classList.remove('active');
-        closeButton.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
+        // Close overlay when clicking outside content
+        fullscreenOverlay.addEventListener('click', function(e) {
+            if (e.target === fullscreenOverlay) {
+                hamburgerMenu.classList.remove('active');
+                hamburgerMenu.classList.remove('hide');
+                fullscreenOverlay.classList.remove('active');
+                closeButton.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
 
         // Open YouTube video
         function openVideo(videoId) {
@@ -1118,16 +826,16 @@ fullscreenOverlay.addEventListener('click', function(e) {
             });
         });
 
-// ESC key to close overlay
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        hamburgerMenu.classList.remove('active');
-        hamburgerMenu.classList.remove('hide'); // Show hamburger button again
-        fullscreenOverlay.classList.remove('active');
-        closeButton.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
+        // ESC key to close overlay
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerMenu.classList.remove('active');
+                hamburgerMenu.classList.remove('hide');
+                fullscreenOverlay.classList.remove('active');
+                closeButton.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
 </html>
