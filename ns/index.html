@@ -1,73 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Saga</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #222;
-            font-family: Arial, sans-serif;
-        }
-        #gameContainer {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-        #loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-        }
-        ruffle-embed {
-            width: 100%;
-            height: 100%;
-        }
-        .error {
-            color: #ff6666;
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div id="gameContainer">
-        <div id="loading">Loading Ninja Saga...</div>
-        <ruffle-embed id="ruffle" src="http://mhantappu.wuaze.com/air.swf"></ruffle-embed>
-    </div>
-
+    <title>Air SWF</title>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <script>
-        window.RufflePlayer = window.RufflePlayer || {};
-        
-        const ruffle = document.getElementById('ruffle');
-        const loading = document.getElementById('loading');
-        
-        // Hide loading after 5 seconds
-        setTimeout(() => {
-            loading.style.display = 'none';
-        }, 5000);
-        
-        // Error handling
-        ruffle.addEventListener('error', () => {
-            loading.innerHTML = '<div class="error">Error loading game. Check URL or try again.</div>';
-        });
-        
-        // Alternative embed method
-        if (!ruffle.shadowRoot) {
-            setTimeout(() => {
-                const embed = document.createElement('embed');
-                embed.src = 'http://mhantappu.wuaze.com/air.swf';
-                embed.width = '100%';
-                embed.height = '100%';
-                embed.type = 'application/x-shockwave-flash';
-                document.getElementById('gameContainer').appendChild(embed);
-            }, 3000);
-        }
-    </script>
+</head>
+<body style="margin:0; background:#000;">
+    <embed 
+        src="https://mhtpsg.github.io/ns/assets/ninja_saga.swf" 
+        width="100%" 
+        height="100vh"
+        type="application/x-shockwave-flash">
 </body>
 </html>
