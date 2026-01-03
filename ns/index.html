@@ -37,7 +37,7 @@
 <body>
     <div id="gameContainer">
         <div id="loading">Loading Ninja Saga...</div>
-        <ruffle-embed id="ruffle" src="http://mhantappu.wuaze.com/ninja_saga.swf"></ruffle-embed>
+        <ruffle-embed id="ruffle" src="http://mhantappu.wuaze.com/air.swf"></ruffle-embed>
     </div>
 
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
@@ -61,7 +61,7 @@
         if (!ruffle.shadowRoot) {
             setTimeout(() => {
                 const embed = document.createElement('embed');
-                embed.src = 'http://mhantappu.wuaze.com/ninja_saga.swf';
+                embed.src = 'http://mhantappu.wuaze.com/air.swf';
                 embed.width = '100%';
                 embed.height = '100%';
                 embed.type = 'application/x-shockwave-flash';
