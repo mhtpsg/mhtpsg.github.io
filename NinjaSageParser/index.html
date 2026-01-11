@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥷 NSE Tools - RPG Converter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --accent: #ffd700;
+            --dark: #1a0e1a;
+            --darker: #0d0506;
+            --light: #fff5e6;
+            --shadow: rgba(255, 107, 53, 0.3);
+            --glow: rgba(255, 215, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #2d1b2d 100%);
+            min-height: 100vh;
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--primary) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--secondary) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--accent) 0%, transparent 50%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px var(--glow);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px var(--glow)); }
+            to { filter: drop-shadow(0 0 30px var(--primary)); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            opacity: 0.8;
+        }
+
+        /* Main Menu */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .menu-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .menu-card .title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .menu-card .desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        /* Content Areas */
+        .content-area {
+            background: rgba(26, 14, 26, 0.8);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* URL List Grid */
+        .url-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .url-item {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.2));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .url-item:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .url-item .number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .url-item .name {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        /* Form Elements */
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            background: rgba(26, 14, 26, 0.8);
+            color: var(--light);
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .file-input {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-input input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 15px;
+            border: 2px dashed rgba(255, 107, 53, 0.5);
+            border-radius: 10px;
+            text-align: center;
+            background: rgba(26, 14, 26, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .file-input:hover .file-input-label {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #666, #888);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        /* Output Areas */
+        .output {
+            background: rgba(13, 5, 6, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: rgba(26, 14, 26, 0.8);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 107, 53, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            text-align: center;
+            color: var(--accent);
+            margin: 20px 0;
+            animation: pulse-text 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Offline Converter Options */
+        .converter-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .converter-card {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .converter-card:hover {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .converter-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .menu {
+                grid-template-columns: 1fr;
+            }
+            
+            .url-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .converter-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🥷 NSE TOOLS</h1>
+            <p class="subtitle">Advanced RPG Data Converter</p>
+        </div>
+        
+        <!-- Main Menu -->
+        <div id="mainMenu" class="menu">
+            <div class="menu-card" onclick="showBinToJsonMenu()">
+                <span class="icon">🎯</span>
+                <div class="title">NSE URL Parser</div>
+                <div class="desc">Convert BIN files from NSE official URLs to JSON format</div>
+            </div>
+            
+            <div class="menu-card" onclick="showCustomUrl()">
+                <span class="icon">🌐</span>
+                <div class="title">Custom URL Parser</div>
+                <div class="desc">Convert BIN files from any custom URL to JSON</div>
+            </div>
+            
+            <div class="menu-card" onclick="showJsonToBin()">
+                <span class="icon">⚡</span>
+                <div class="title">JSON to BIN</div>
+                <div class="desc">Convert JSON files to compressed BIN format</div>
+            </div>
+            
+            <div class="menu-card" onclick="downloadAllBinToJson()">
+                <span class="icon">📦</span>
+                <div class="title">Download All</div>
+                <div class="desc">Download and convert all NSE data with auto-zip</div>
+            </div>
+            
+            <div class="menu-card" onclick="showCheckNewData()">
+                <span class="icon">🔍</span>
+                <div class="title">Data Checker</div>
+                <div class="desc">Check for new entries in NSE database</div>
+            </div>
+            
+            <div class="menu-card" onclick="showOfflineConverter()">
+                <span class="icon">💾</span>
+                <div class="title">Offline Converter</div>
+                <div class="desc">Convert JSON files to BIN offline with batch support</div>
+            </div>
+        </div>
+
+        <!-- Content Areas -->
+        <!-- NSE URL Menu -->
+        <div id="binToJsonMenu" class="content-area hidden">
+            <h2>🎯 NSE URL Parser</h2>
+            <p>Pilih file NSE yang ingin dikonversi:</p>
+            <div class="url-grid" id="urlList"></div>
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+            <div id="output1" class="output hidden"></div>
+        </div>
+
+        <!-- Custom URL Menu -->
+        <div id="customUrlMenu" class="content-area hidden">
+            <h2>🌐 Custom URL Parser</h2>
+            <div class="input-group">
+                <label class="input-label">Masukkan URL file .bin:</label>
+                <input type="text" id="customBinUrl" class="form-input" placeholder="https://example.com/file.bin">
+            </div>
+            <button class="btn" onclick="convertCustomBinToJson()">🚀 Convert</button>
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+            <div id="output2" class="output hidden"></div>
+        </div>
+
+        <!-- JSON to BIN Menu -->
+        <div id="jsonToBinMenu" class="content-area hidden">
+            <h2>⚡ JSON to BIN Converter</h2>
+            <div class="input-group">
+                <label class="input-label">Masukkan URL file .json:</label>
+                <input type="text" id="jsonUrl" class="form-input" placeholder="https://example.com/file.json">
+            </div>
+            <button class="btn" onclick="convertJsonToBin()">🚀 Convert</button>
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+            <div id="output3" class="output hidden"></div>
+        </div>
+
+        <!-- Download All Menu -->
+        <div id="downloadAllMenu" class="content-area hidden">
+            <h2>📦 Download All NSE Data</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+            </div>
+            <div id="output4" class="output"></div>
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+        </div>
+
+        <!-- Check New Data Menu -->
+        <div id="checkNewDataMenu" class="content-area hidden">
+            <h2>🔍 Data Checker</h2>
+            <p>Pilih data yang ingin dicek:</p>
+            <div class="url-grid" id="urlListCheck"></div>
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+            <div id="output5" class="output hidden"></div>
+        </div>
+
+        <!-- Offline Converter Menu -->
+        <div id="offlineConverterMenu" class="content-area hidden">
+            <h2>💾 Offline JSON to BIN Converter</h2>
+            <p>Pilih metode konversi:</p>
+            
+            <div class="converter-options">
+                <div class="converter-card" onclick="showSingleFileConverter()">
+                    <span class="icon">📄</span>
+                    <div class="title">Single File</div>
+                    <div class="desc">Upload satu file JSON</div>
+                </div>
+                
+                <div class="converter-card" onclick="showZipConverter()">
+                    <span class="icon">📁</span>
+                    <div class="title">ZIP Folder</div>
+                    <div class="desc">Upload ZIP berisi multiple JSON</div>
+                </div>
+            </div>
+            
+            <button class="btn btn-back" onclick="showMainMenu()">⬅️ Kembali</button>
+            <div id="output6" class="output hidden"></div>
+        </div>
+
+        <!-- Single File Converter -->
+        <div id="singleFileConverter" class="content-area hidden">
+            <h2>📄 Single JSON to BIN</h2>
+            <div class="input-group">
+                <label class="input-label">Pilih file JSON:</label>
+                <div class="file-input">
+                    <input type="file" id="singleJsonFile" accept=".json">
+                    <label class="file-input-label">
+                        📄 Klik untuk pilih file JSON
+                    </label>
+                </div>
+            </div>
+            <button class="btn" onclick="convertSingleJsonToBin()">🚀 Convert to BIN</button>
+            <button class="btn btn-back" onclick="showOfflineConverter()">⬅️ Kembali</button>
+            <div id="outputSingle" class="output hidden"></div>
+        </div>
+
+        <!-- ZIP Converter -->
+        <div id="zipConverter" class="content-area hidden">
+            <h2>📁 ZIP Batch Converter</h2>
+            <div class="input-group">
+                <label class="input-label">Upload ZIP berisi file-file JSON:</label>
+                <div class="file-input">
+                    <input type="file" id="zipFile" accept=".zip">
+                    <label class="file-input-label">
+                        📁 Klik untuk pilih file ZIP
+                    </label>
+                </div>
+            </div>
+            <button class="btn" onclick="convertZipToBin()">🚀 Convert All to BIN</button>
+            <button class="btn btn-back" onclick="showOfflineConverter()">⬅️ Kembali</button>
+            <div class="progress-container" id="zipProgress" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="zipProgressFill">0%</div>
+                </div>
+            </div>
+            <div id="outputZip" class="output hidden"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        const urlMapping = {
+            "1": { name: "skills", url: "https://ns-assets.ninjasage.id/static/lib/skills.bin" },
+            "2": { name: "library", url: "https://ns-assets.ninjasage.id/static/lib/library.bin" },
+            "3": { name: "enemy", url: "https://ns-assets.ninjasage.id/static/lib/enemy.bin" },
+            "4": { name: "npc", url: "https://ns-assets.ninjasage.id/static/lib/npc.bin" },
+            "5": { name: "pet", url: "https://ns-assets.ninjasage.id/static/lib/pet.bin" },
+            "6": { name: "mission", url: "https://ns-assets.ninjasage.id/static/lib/mission.bin" },
+            "7": { name: "gamedata", url: "https://ns-assets.ninjasage.id/static/lib/gamedata.bin" },
+            "8": { name: "talents", url: "https://ns-assets.ninjasage.id/static/lib/talents.bin" },
+            "9": { name: "senjutsu", url: "https://ns-assets.ninjasage.id/static/lib/senjutsu.bin" },
+            "10": { name: "skill-effect", url: "https://ns-assets.ninjasage.id/static/lib/skill-effect.bin" },
+            "11": { name: "weapon-effect", url: "https://ns-assets.ninjasage.id/static/lib/weapon-effect.bin" },
+            "12": { name: "back_item-effect", url: "https://ns-assets.ninjasage.id/static/lib/back_item-effect.bin" },
+            "13": { name: "accessory-effect", url: "https://ns-assets.ninjasage.id/static/lib/accessory-effect.bin" },
+            "14": { name: "arena-effect", url: "https://ns-assets.ninjasage.id/static/lib/arena-effect.bin" },
+            "15": { name: "animation", url: "https://ns-assets.ninjasage.id/static/lib/animation.bin" }
+        };
+
+        let previousData = {};
+        let allJsonFiles = {};
+
+        // Navigation Functions
+        function hideAll() {
+            document.querySelectorAll('.content-area').forEach(area => {
+                area.classList.add('hidden');
+            });
+        }
+
+        function showMainMenu() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'grid';
+        }
+
+        function showBinToJsonMenu() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('binToJsonMenu').classList.remove('hidden');
+            populateUrlList('urlList', convertBinToJson);
+        }
+
+        function showCustomUrl() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('customUrlMenu').classList.remove('hidden');
+        }
+
+        function showJsonToBin() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('jsonToBinMenu').classList.remove('hidden');
+        }
+
+        function showCheckNewData() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('checkNewDataMenu').classList.remove('hidden');
+            populateUrlList('urlListCheck', checkNewData);
+        }
+
+        function showOfflineConverter() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('offlineConverterMenu').classList.remove('hidden');
+        }
+
+        function showSingleFileConverter() {
+            hideAll();
+            document.getElementById('singleFileConverter').classList.remove('hidden');
+        }
+
+        function showZipConverter() {
+            hideAll();
+            document.getElementById('zipConverter').classList.remove('hidden');
+        }
+
+        // Utility Functions
+        function populateUrlList(elementId, callback) {
+            const urlList = document.getElementById(elementId);
+            urlList.innerHTML = '';
+            
+            Object.entries(urlMapping).forEach(([key, value]) => {
+                const div = document.createElement('div');
+                div.className = 'url-item';
+                div.innerHTML = `
+                    <div class="number">${key}</div>
+                    <div class="name">${value.name}</div>
+                `;
+                div.onclick = () => callback(key);
+                urlList.appendChild(div);
+            });
+        }
+
+        async function downloadFile(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return await response.arrayBuffer();
+        }
+
+        function createZipWithFiles(files) {
+            const zip = new JSZip();
+            Object.entries(files).forEach(([filename, content]) => {
+                if (filename.endsWith('.json')) {
+                    zip.file(filename, JSON.stringify(content, null, 2));
+                } else {
+                    zip.file(filename, content);
+                }
+            });
+            return zip.generateAsync({ type: 'blob' });
+        }
+
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Main Conversion Functions
+        async function convertBinToJson(key) {
+            const output = document.getElementById('output1');
+            output.classList.remove('hidden');
+            output.innerHTML = '<div class="spinner"></div><div class="loading-text">🔄 Downloading and converting...</div>';
+
+            const entry = urlMapping[key];
+            
+            try {
+                const binData = await downloadFile(entry.url);
+                const decompressed = pako.inflate(new Uint8Array(binData), { to: 'string' });
+                const jsonData = JSON.parse(decompressed);
+                
+                previousData[entry.name] = jsonData;
+                allJsonFiles[`${entry.name}.json`] = jsonData;
+                
+                const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+                downloadBlob(blob, `${entry.name}.json`);
+                
+                output.innerHTML = `✅ Successfully converted ${entry.name}.bin to JSON!\n\n📁 File downloaded to your computer.\n📊 Data count: ${Array.isArray(jsonData) ? jsonData.length : 'N/A'} items\n💾 File size: ${(blob.size / 1024).toFixed(2)} KB`;
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function convertCustomBinToJson() {
+            const url = document.getElementById('customBinUrl').value.trim();
+            const output = document.getElementById('output2');
+            
+            if (!url) {
+                alert('Please enter a URL first!');
+                return;
+            }
+
+            output.classList.remove('hidden');
+            output.innerHTML = '<div class="spinner"></div><div class="loading-text">🔄 Downloading and converting...</div>';
+
+            try {
+                const binData = await downloadFile(url);
+                const decompressed = pako.inflate(new Uint8Array(binData), { to: 'string' });
+                const jsonData = JSON.parse(decompressed);
+                
+                const filename = url.split('/').pop().replace('.bin', '.json');
+                const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+                downloadBlob(blob, filename);
+                
+                output.innerHTML = `✅ Successfully converted to JSON!\n\n📁 File: ${filename}\n📊 Data count: ${Array.isArray(jsonData) ? jsonData.length : 'N/A'} items\n💾 File size: ${(blob.size / 1024).toFixed(2)} KB`;
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function convertJsonToBin() {
+            const url = document.getElementById('jsonUrl').value.trim();
+            const output = document.getElementById('output3');
+            
+            if (!url) {
+                alert('Please enter a URL first!');
+                return;
+            }
+
+            output.classList.remove('hidden');
+            output.innerHTML = '<div class="spinner"></div><div class="loading-text">🔄 Downloading and converting...</div>';
+
+            try {
+                const response = await fetch(url);
+                const jsonData = await response.json();
+                
+                const jsonString = JSON.stringify(jsonData);
+                const compressed = pako.deflate(jsonString);
+                
+                const filename = url.split('/').pop().replace('.json', '.bin');
+                const blob = new Blob([compressed], { type: 'application/octet-stream' });
+                downloadBlob(blob, filename);
+                
+                output.innerHTML = `✅ Successfully converted to BIN!\n\n📁 File: ${filename}\n💾 Compressed size: ${(blob.size / 1024).toFixed(2)} KB\n📈 Compression ratio: ${((jsonString.length - compressed.length) / jsonString.length * 100).toFixed(1)}%`;
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function downloadAllBinToJson() {
+            hideAll();
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('downloadAllMenu').classList.remove('hidden');
+            
+            const output = document.getElementById('output4');
+            const progressFill = document.getElementById('progressFill');
+            
+            output.innerHTML = '🚀 Starting batch download...\n\n';
+            allJsonFiles = {};
+            
+            const entries = Object.entries(urlMapping);
+            let completed = 0;
+
+            for (const [key, value] of entries) {
+                try {
+                    output.innerHTML += `⏳ Processing ${value.name}...\n`;
+                    
+                    const binData = await downloadFile(value.url);
+                    const decompressed = pako.inflate(new Uint8Array(binData), { to: 'string' });
+                    const jsonData = JSON.parse(decompressed);
+                    
+                    previousData[value.name] = jsonData;
+                    allJsonFiles[`${value.name}.json`] = jsonData;
+                    
+                    output.innerHTML += `✅ ${value.name} completed! (${Array.isArray(jsonData) ? jsonData.length : 'N/A'} items)\n\n`;
+                    completed++;
+                    
+                    const progress = Math.round((completed / entries.length) * 100);
+                    progressFill.style.width = progress + '%';
+                    progressFill.textContent = progress + '%';
+                    
+                } catch (error) {
+                    output.innerHTML += `❌ ${value.name} failed: ${error.message}\n\n`;
+                }
+            }
+            
+            // Create and download ZIP
+            output.innerHTML += '📦 Creating NSEData package...\n';
+            
+            try {
+                const zipBlob = await createZipWithFiles(allJsonFiles);
+                downloadBlob(zipBlob, 'nsedata.zip');
+                
+                output.innerHTML += `\n🎉 All files processed successfully!\n📦 Downloaded: nsedata.zip (${(zipBlob.size / 1024 / 1024).toFixed(2)} MB)\n📁 Contains: ${Object.keys(allJsonFiles).length} JSON files`;
+            } catch (error) {
+                output.innerHTML += `\n❌ Failed to create ZIP: ${error.message}`;
+            }
+        }
+
+        async function checkNewData(key) {
+            const output = document.getElementById('output5');
+            output.classList.remove('hidden');
+            output.innerHTML = '<div class="spinner"></div><div class="loading-text">🔍 Checking for new data...</div>';
+
+            const entry = urlMapping[key];
+            
+            try {
+                const binData = await downloadFile(entry.url);
+                const decompressed = pako.inflate(new Uint8Array(binData), { to: 'string' });
+                const currentData = JSON.parse(decompressed);
+                
+                if (!previousData[entry.name]) {
+                    output.innerHTML = `⚠️ No previous data found for ${entry.name}.\n\nPlease convert the data first using menu 1 or 4.`;
+                    return;
+                }
+                
+                const currentIds = new Set(currentData.map(item => item.id));
+                const previousIds = new Set(previousData[entry.name].map(item => item.id));
+                
+                const newIds = [...currentIds].filter(id => !previousIds.has(id));
+                
+                if (newIds.length > 0) {
+                    output.innerHTML = `🆕 Found ${newIds.length} new entries in ${entry.name}:\n\n`;
+                    newIds.forEach(id => {
+                        const newEntry = currentData.find(item => item.id === id);
+                        output.innerHTML += `🔥 ID: ${id}\n${JSON.stringify(newEntry, null, 2)}\n\n`;
+                    });
+                } else {
+                    output.innerHTML = `✅ No new entries found in ${entry.name}.\n\n📊 Total entries: ${currentData.length}`;
+                }
+                
+                previousData[entry.name] = currentData;
+                
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        // Offline Converter Functions
+        async function convertSingleJsonToBin() {
+            const fileInput = document.getElementById('singleJsonFile');
+            const output = document.getElementById('outputSingle');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select a JSON file first!');
+                return;
+            }
+
+            output.classList.remove('hidden');
+            output.innerHTML = '<div class="spinner"></div><div class="loading-text">🔄 Converting JSON to BIN...</div>';
+
+            try {
+                const file = fileInput.files[0];
+                const jsonText = await file.text();
+                const jsonData = JSON.parse(jsonText);
+                
+                const compressed = pako.deflate(JSON.stringify(jsonData));
+                const filename = file.name.replace('.json', '.bin');
+                
+                const blob = new Blob([compressed], { type: 'application/octet-stream' });
+                downloadBlob(blob, filename);
+                
+                output.innerHTML = `✅ Successfully converted to BIN!\n\n📁 Original: ${file.name}\n📁 Output: ${filename}\n💾 Original size: ${(file.size / 1024).toFixed(2)} KB\n💾 Compressed size: ${(blob.size / 1024).toFixed(2)} KB\n📈 Compression ratio: ${((file.size - blob.size) / file.size * 100).toFixed(1)}%`;
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function convertZipToBin() {
+            const fileInput = document.getElementById('zipFile');
+            const output = document.getElementById('outputZip');
+            const progressContainer = document.getElementById('zipProgress');
+            const progressFill = document.getElementById('zipProgressFill');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select a ZIP file first!');
+                return;
+            }
+
+            output.classList.remove('hidden');
+            progressContainer.style.display = 'block';
+            output.innerHTML = '🔄 Extracting and converting ZIP contents...\n\n';
+
+            try {
+                const zipFile = fileInput.files[0];
+                const zip = await JSZip.loadAsync(zipFile);
+                
+                const jsonFiles = Object.keys(zip.files).filter(name => 
+                    name.endsWith('.json') && !zip.files[name].dir
+                );
+                
+                if (jsonFiles.length === 0) {
+                    throw new Error('No JSON files found in ZIP');
+                }
+                
+                const binFiles = {};
+                let completed = 0;
+                
+                for (const filename of jsonFiles) {
+                    try {
+                        output.innerHTML += `⏳ Converting ${filename}...\n`;
+                        
+                        const jsonText = await zip.files[filename].async('text');
+                        const jsonData = JSON.parse(jsonText);
+                        const compressed = pako.deflate(JSON.stringify(jsonData));
+                        
+                        const binFilename = filename.replace('.json', '.bin');
+                        binFiles[binFilename] = compressed;
+                        
+                        output.innerHTML += `✅ ${filename} → ${binFilename}\n`;
+                        completed++;
+                        
+                        const progress = Math.round((completed / jsonFiles.length) * 100);
+                        progressFill.style.width = progress + '%';
+                        progressFill.textContent = progress + '%';
+                        
+                    } catch (error) {
+                        output.innerHTML += `❌ Failed to convert ${filename}: ${error.message}\n`;
+                    }
+                }
+                
+                // Create ZIP with BIN files
+                output.innerHTML += '\n📦 Creating BIN package...\n';
+                
+                const binZip = new JSZip();
+                Object.entries(binFiles).forEach(([filename, data]) => {
+                    binZip.file(filename, data);
+                });
+                
+                const binZipBlob = await binZip.generateAsync({ type: 'blob' });
+                downloadBlob(binZipBlob, 'converted_bin_files.zip');
+                
+                output.innerHTML += `\n🎉 Batch conversion completed!\n📦 Downloaded: converted_bin_files.zip (${(binZipBlob.size / 1024 / 1024).toFixed(2)} MB)\n📁 Contains: ${Object.keys(binFiles).length} BIN files`;
+                
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+                progressContainer.style.display = 'none';
+            }
+        }
+
+        // File input label updates
+        document.getElementById('singleJsonFile').addEventListener('change', function(e) {
+            const label = document.querySelector('#singleFileConverter .file-input-label');
+            if (e.target.files[0]) {
+                label.textContent = `📄 Selected: ${e.target.files[0].name}`;
+            }
+        });
+
+        document.getElementById('zipFile').addEventListener('change', function(e) {
+            const label = document.querySelector('#zipConverter .file-input-label');
+            if (e.target.files[0]) {
+                label.textContent = `📁 Selected: ${e.target.files[0].name}`;
+            }
+        });
+
+        // Initialize
+        showMainMenu();
+    </script>
+</body>
+</html>
