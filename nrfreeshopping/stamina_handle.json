@@ -1,12 +1,12 @@
 {
-   "max_stamina": 200,
-   "stamina_cost_per_claim": 20,
-   "stamina_refill_amount": 20,
-   "stamina_refill_interval_minutes": 60,
+   "max_stamina": 120,
+   "stamina_cost_per_claim": 10,
+   "stamina_refill_amount": 10,
+   "stamina_refill_interval_minutes": 20,
    "settings": {
       "allow_over_max": false,
       "min_stamina_amount": 1,
-      "max_stamina_amount": 200
+      "max_stamina_amount": 120
    },
    "version": "1.0",
    "last_updated": "2025-01-08T00:00:00Z"
