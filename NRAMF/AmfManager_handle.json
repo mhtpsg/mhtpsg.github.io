@@ -1,0 +1,191 @@
+{
+  "disabledServices": [
+    "CharacterService.buySkill","CharacterService.buyItem","CharacterService.sellItem",
+    "CharacterService.unlockVillage","CharacterService.travelToVillage","CharacterService.equipSet",
+    "CharacterService.equipSkillSet","SenjutsuService.saveSet","Blacksmith.forgeItem",
+    "Blacksmith.forgeItemWithTokens","BlacksmithLightning.forgeItem","BlacksmithLightning.forgeItemWithTokens",
+    "MaterialMarket.forgeItem","CharacterService.getPartyControlData","CharacterService.setPartyControl",
+    "AdvancedAcademy.executeService","PVPShopService.executeService","ClanService.executeService"
+  ],
+  "engine": {
+    "functions": {
+      "processService": {
+        "code": "var serviceConfig = this.getServiceConfig(serviceName); if(serviceConfig) { return this.executeService(serviceConfig, params); } return {status: 1};"
+      },
+      "getServiceConfig": {
+        "code": "if(configData.serviceHandlers && configData.serviceHandlers[serviceName]) return {type: 'handler', config: configData.serviceHandlers[serviceName]}; if(configData.forgeServices && configData.forgeServices.services.indexOf(serviceName) >= 0) return {type: 'forge', config: configData.forgeServices}; if(configData.specialServices && configData.specialServices[serviceName]) return {type: 'special', config: configData.specialServices[serviceName], serviceName: serviceName}; return null;"
+      },
+      "executeService": {
+        "code": "switch(serviceConfig.type) { case 'handler': return this.executeServiceHandler(serviceConfig.config, params); case 'forge': return this.executeForgeService(serviceName, serviceConfig.config, params); case 'special': return this.executeSpecialService(serviceConfig.serviceName, serviceConfig.config, params); } return {status: 1};"
+      },
+      "executeServiceHandler": {
+        "code": "if(handler.requireParams && params.length < handler.requireParams) return {status: 1}; var mappedParams = this.mapParameters(handler.paramMappings, params); if(handler.workflow) this.executeWorkflow(handler.workflow, mappedParams); return this.buildResponse(handler.response, mappedParams);"
+      },
+      "executeForgeService": {
+        "code": "if(params.length < 3) return {status: 1}; var itemId = params[2]; var mappedParams = {itemId: itemId}; this.executeWorkflow(forgeConfig.workflow, mappedParams); var response = this.buildResponse(forgeConfig.response, mappedParams); if(serviceName.indexOf('Lightning') >= 0 && forgeConfig.lightningExtras) { for(var key in forgeConfig.lightningExtras) { response[key] = this.resolveValue(forgeConfig.lightningExtras[key], mappedParams); } } return response;"
+      },
+      "executeSpecialService": {
+        "code": "if(params.length < 2) return {status: 1}; var serviceType = params[0]; if(specialConfig.passthrough && specialConfig.passthrough.indexOf(serviceType) >= 0) return {status: 1, passthrough: true}; if(specialConfig.handlers && specialConfig.handlers[serviceType]) { var handler = specialConfig.handlers[serviceType]; var serviceParams = params[1]; var mappedParams = this.mapParameters(handler.paramMappings, serviceParams); if(handler.workflow) this.executeWorkflow(handler.workflow, mappedParams); return this.buildResponse(handler.response, mappedParams); } return {status: 1};"
+      },
+      "mapParameters": {
+        "code": "var mapped = {}; if(!mappings) return mapped; for(var key in mappings) { var index = mappings[key]; if(index < params.length) mapped[key] = params[index]; } return mapped;"
+      },
+      "executeWorkflow": {
+        "code": "if(!workflow) return; for(var i = 0; i < workflow.length; i++) this.executeWorkflowStep(workflow[i], mappedParams);"
+      },
+      "executeWorkflowStep": {
+        "code": "var functionName = step.function; var functionType = step.type; var stepParams = this.resolveStepParams(step.params, mappedParams); switch(functionName) { case 'executeAction': this.executeAction(functionType, stepParams); break; case 'handleItemOperation': this.handleItemOperation(functionType, stepParams); break; case 'calculateSellPrice': this.calculateSellPrice(stepParams); break; }"
+      },
+      "executeAction": {
+        "code": "switch(type) { case 'setProperty': Character[params.property] = params.value; break; case 'updateSkills': Character.updateSkills(params.skillId, params.enabled); break; case 'unlockVillage': this.unlockVillageFunction(params.villageId); break; }"
+      },
+      "handleItemOperation": {
+        "code": "var itemId = params.itemId; var quantity = params.quantity || 1; if(itemId.indexOf('skill_') >= 0) { Character.updateSkills(itemId, type == 'addItem'); return; } if(itemId.indexOf('pet_') >= 0 && type == 'addItem') { if(Character.hasOwnProperty('addPet')) Character.addPet(itemId); return; } var itemParts = itemId.split('_'); var itemType = itemParts[0]; var methodMap = {wpn: type == 'addItem' ? 'addWeapon' : 'removeWeapon', back: type == 'addItem' ? 'addBack' : 'removeBackItem', accessory: type == 'addItem' ? 'addAccessory' : 'removeAccessory', set: type == 'addItem' ? 'addSet' : 'removeClothing', hair: type == 'addItem' ? 'addHair' : 'removeHairstyle', item: type == 'addItem' ? 'addMaterials' : 'removeMaterials', material: type == 'addItem' ? 'addMaterials' : 'removeMaterials', essential: type == 'addItem' ? 'addEssentials' : 'removeEssentials'}; var method = methodMap[itemType]; if(method) { if(method.indexOf('Materials') >= 0 || method.indexOf('Essentials') >= 0) Character[method](itemId, quantity); else Character[method](itemId, quantity); }"
+      },
+      "calculateSellPrice": {
+        "code": "var itemInfo = Library.getItemInfo(params.itemId); var sellPrice = itemInfo ? itemInfo.item_sell_price * params.quantity : 0; Character.character_gold += sellPrice;"
+      },
+      "unlockVillageFunction": {
+        "code": "if(!Character.unclocked_villages) Character.unclocked_villages = []; for(var i = 0; i < Character.unclocked_villages.length; i++) { if(Character.unclocked_villages[i].village_id == villageId) return; } Character.unclocked_villages.push({village_id: villageId});"
+      },
+      "resolveStepParams": {
+        "code": "if(!params) return {}; var resolved = {}; for(var key in params) { var value = params[key]; if(typeof value == 'string' && value.indexOf('${') == 0) { var paramName = value.substring(2, value.length - 1); resolved[key] = mappedParams[paramName]; } else { resolved[key] = value; } } return resolved;"
+      },
+      "buildResponse": {
+        "code": "if(!responseTemplate) return {status: 1}; var response = {}; for(var key in responseTemplate) { response[key] = this.resolveValue(responseTemplate[key], mappedParams); } return response;"
+      },
+      "resolveValue": {
+        "code": "if(typeof value == 'string') { if(value.indexOf('${') == 0) { var paramName = value.substring(2, value.length - 1); return mappedParams[paramName]; } return value; } else if(typeof value == 'object' && value.type) { switch(value.type) { case 'characterProperty': return Character[value.property] || value.default; case 'staticValue': return value.value; default: return this.buildResponse(value, mappedParams); } } else if(typeof value == 'object') { return this.buildResponse(value, mappedParams); } return value;"
+      }
+    }
+  },
+  "serviceHandlers": {
+    "CharacterService.buySkill": {
+      "requireParams": 3,
+      "paramMappings": {"skillId": 2},
+      "workflow": [{"function": "executeAction", "type": "updateSkills", "params": {"skillId": "${skillId}", "enabled": true}}],
+      "response": {
+        "status": 1,
+        "data": {
+          "character_gold": {"type": "characterProperty", "property": "character_gold"},
+          "account_tokens": {"type": "characterProperty", "property": "account_tokens"},
+          "character_element_1": {"type": "characterProperty", "property": "character_element_1"},
+          "character_element_2": {"type": "characterProperty", "property": "character_element_2"},
+          "character_element_3": {"type": "characterProperty", "property": "character_element_3"},
+          "character_element_4": {"type": "characterProperty", "property": "character_element_4"},
+          "character_element_5": {"type": "characterProperty", "property": "character_element_5"}
+        }
+      }
+    },
+    "CharacterService.buyItem": {
+      "requireParams": 3,
+      "paramMappings": {"itemId": 2, "quantity": 3},
+      "workflow": [{"function": "handleItemOperation", "type": "addItem", "params": {"itemId": "${itemId}", "quantity": "${quantity}"}}],
+      "response": {"status": 1, "data": {"character_gold": {"type": "characterProperty", "property": "character_gold"}, "account_tokens": {"type": "characterProperty", "property": "account_tokens"}}}
+    },
+    "CharacterService.sellItem": {
+      "requireParams": 3,
+      "paramMappings": {"itemId": 2, "quantity": 3},
+      "workflow": [{"function": "calculateSellPrice", "params": {"itemId": "${itemId}", "quantity": "${quantity}"}}, {"function": "handleItemOperation", "type": "removeItem", "params": {"itemId": "${itemId}", "quantity": "${quantity}"}}],
+      "response": {"status": 1, "data": {"character_gold": {"type": "characterProperty", "property": "character_gold"}, "account_tokens": {"type": "characterProperty", "property": "account_tokens"}}}
+    },
+    "CharacterService.equipSet": {
+      "requireParams": 9,
+      "paramMappings": {"weapon": 2, "backItem": 3, "set": 4, "accessory": 5, "hair": 6, "colorHair": 7, "colorSkin": 8},
+      "workflow": [
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_weapon", "value": "${weapon}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_back_item", "value": "${backItem}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_set", "value": "${set}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_accessory", "value": "${accessory}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_hair", "value": "${hair}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_color_hair", "value": "${colorHair}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_color_skin", "value": "${colorSkin}"}}
+      ],
+      "response": {
+        "status": 1,
+        "data": {
+          "character_weapon": {"type": "characterProperty", "property": "character_weapon"},
+          "character_back_item": {"type": "characterProperty", "property": "character_back_item"},
+          "character_set": {"type": "characterProperty", "property": "character_set"},
+          "character_accessory": {"type": "characterProperty", "property": "character_accessory"},
+          "character_hair": {"type": "characterProperty", "property": "character_hair"},
+          "character_color_hair": {"type": "characterProperty", "property": "character_color_hair"},
+          "character_color_skin": {"type": "characterProperty", "property": "character_color_skin"}
+        }
+      }
+    },
+    "CharacterService.equipSkillSet": {
+      "requireParams": 3,
+      "paramMappings": {"skillSet": 2},
+      "workflow": [
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_skill_set", "value": "${skillSet}"}},
+        {"function": "executeAction", "type": "setProperty", "params": {"property": "character_equipped_skills", "value": "${skillSet}"}}
+      ],
+      "response": {"status": 1, "data": {"character_equipped_skills": {"type": "characterProperty", "property": "character_equipped_skills"}, "character_skill_set": {"type": "characterProperty", "property": "character_skill_set"}}}
+    },
+    "SenjutsuService.saveSet": {
+      "requireParams": 3,
+      "paramMappings": {"senjutsuSkills": 2},
+      "workflow": [{"function": "executeAction", "type": "setProperty", "params": {"property": "character_senjutsu_skills", "value": "${senjutsuSkills}"}}],
+      "response": {"status": 1, "data": {"character_senjutsu_skills": {"type": "characterProperty", "property": "character_senjutsu_skills"}}}
+    },
+    "CharacterService.unlockVillage": {
+      "requireParams": 3,
+      "paramMappings": {"villageId": 2},
+      "workflow": [{"function": "executeAction", "type": "unlockVillage", "params": {"villageId": "${villageId}"}}],
+      "response": {"status": 1, "unlocked_villages": {"type": "characterProperty", "property": "unclocked_villages"}}
+    },
+    "CharacterService.travelToVillage": {
+      "requireParams": 3,
+      "paramMappings": {"villageId": 2},
+      "workflow": [{"function": "executeAction", "type": "setProperty", "params": {"property": "character_village_id", "value": "${villageId}"}}],
+      "response": {"status": 1, "character_village_id": {"type": "characterProperty", "property": "character_village_id"}}
+    },
+    "CharacterService.getPartyControlData": {
+      "workflow": [],
+      "response": {"status": 1, "available": 999}
+    },
+    "CharacterService.setPartyControl": {
+      "workflow": [{"function": "executeAction", "type": "setProperty", "params": {"property": "teammate_controllable", "value": true}}],
+      "response": {"status": 1, "is_set": true}
+    }
+  },
+  "forgeServices": {
+    "services": ["Blacksmith.forgeItem", "Blacksmith.forgeItemWithTokens", "BlacksmithLightning.forgeItem", "BlacksmithLightning.forgeItemWithTokens", "MaterialMarket.forgeItem"],
+    "workflow": [{"function": "handleItemOperation", "type": "addItem", "params": {"itemId": "${itemId}", "quantity": 1}}],
+    "response": {"status": 1, "item": "${itemId}", "requirements": [[], [], 0]},
+    "lightningExtras": {"skills": {"type": "characterProperty", "property": "character_equipped_skills"}}
+  },
+  "specialServices": {
+    "ClanService.executeService": {
+      "passthrough": ["getClanShopData"],
+      "handlers": {
+        "buyClanShopItem": {
+          "paramMappings": {"itemId": 2, "quantity": 3},
+          "workflow": [{"function": "handleItemOperation", "type": "addItem", "params": {"itemId": "${itemId}", "quantity": "${quantity}"}}],
+          "response": {"status": 1, "item_added": "${itemId}", "amount": "${quantity}", "prestige": {"type": "characterProperty", "property": "character_prestige", "default": 999999}}
+        }
+      }
+    },
+    "PVPShopService.executeService": {
+      "passthrough": ["getPVPShopData"],
+      "handlers": {
+        "buyPVPShopItem": {
+          "paramMappings": {"itemId": 2, "quantity": 3},
+          "workflow": [{"function": "handleItemOperation", "type": "addItem", "params": {"itemId": "${itemId}", "quantity": "${quantity}"}}],
+          "response": {"status": 1, "pvp_points": {"type": "characterProperty", "property": "character_pvp_points", "default": 0}}
+        }
+      }
+    },
+    "AdvancedAcademy.executeService": {
+      "passthrough": ["getSkills"],
+      "handlers": {
+        "newUpgradeSkill": {
+          "paramMappings": {"nextSkillId": 5},
+          "workflow": [{"function": "executeAction", "type": "updateSkills", "params": {"skillId": "${nextSkillId}", "enabled": true}}],
+          "response": {"status": 1, "skills": {"type": "characterProperty", "property": "character_equipped_skills"}, "cost": 0, "gold_cost": 0, "pill_amt_data": ["", 0], "lastSkillId": "${nextSkillId}", "result": ""}
+        }
+      }
+    }
+  }
+}
