@@ -1,7 +1,7 @@
 {
    "codes": [
       {
-         "code": "MHTP-FREE-STAM-40AJ",
+         "code": "MHTP-FREE-STAM-20AJ",
          "stamina_amount": 20,
          "active": true,
          "expiry_date": "2026-01-17T23:59:59Z",
@@ -19,7 +19,7 @@
          "stamina_amount": 60,
          "active": true,
          "expiry_date": "2026-01-22T23:59:59Z",
-         "description": "Expired Test Code"
+         "description": "Weekly Code"
       }
    ]
 }
