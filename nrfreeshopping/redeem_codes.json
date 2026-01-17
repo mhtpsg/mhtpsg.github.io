@@ -14,6 +14,13 @@
          "expiry_date": "2026-02-10T23:59:59Z",
          "description": "This for Discord Member. Free 20 Stamina xD"
       },
+       {
+    "code": "ROAD-1KMB-DSCD-MHTP",
+    "stamina_amount": 20,
+    "active": true,
+    "expiry_date": "2026-01-19T23:59:59Z",
+    "description": "Road to 1K Members on discord"
+ },
       {
          "code": "WEEK-STAM-MHTP-DSCD",
          "stamina_amount": 60,
