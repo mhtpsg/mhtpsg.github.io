@@ -5,8 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kodokers - Linktree</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Toggle Container */
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-container:hover {
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .toggle-label {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Status indicator */
+        input:checked + .slider::after {
+            content: 'ON';
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        input:not(:checked) + .slider::after {
+            content: 'OFF';
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        /* Responsive untuk mobile */
+        @media (max-width: 768px) {
+            .toggle-container {
+                top: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .toggle-label {
+                font-size: 11px;
+            }
+
+            .switch {
+                width: 44px;
+                height: 22px;
+            }
+
+            .slider:before {
+                height: 16px;
+                width: 16px;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(22px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toggle-label {
+                display: none;
+            }
+
+            .toggle-container {
+                padding: 8px 12px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Toggle Switch untuk Auto Redirect -->
+    <div class="toggle-container">
+        <span class="toggle-label">Mhtp Hub Mode</span>
+        <label class="switch">
+            <input type="checkbox" id="autoRedirectToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
     <!-- Background Elements -->
     <div class="bg-particles">
         <div class="particle"></div>
@@ -69,7 +218,7 @@
                     <span>Kodokers</span>
                 </div>
 
-                <div class="video-card" data-video="b5hrGGfPDw8">
+                <div class="video-card" data-video="b5hrGfPDw8">
                     <div class="video-thumb">
                         <img src="https://img.youtube.com/vi/b5hrGGfPDw8/maxresdefault.jpg" alt="Ninja Rift Everything Unlocked" loading="lazy">
                         <div class="play-btn"></div>
@@ -127,5 +276,41 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Toggle Auto Redirect Functionality
+        const autoRedirectToggle = document.getElementById('autoRedirectToggle');
+
+        // Check localStorage untuk status toggle saat page load
+        const savedToggleState = localStorage.getItem('mhtpHubMode');
+        
+        // Set toggle sesuai saved state
+        if (savedToggleState === 'true') {
+            autoRedirectToggle.checked = true;
+            // Redirect otomatis jika toggle ON
+            setTimeout(() => {
+                window.location.href = 'mhtp_ad_onclick/index.html';
+            }, 1);
+        } else {
+            autoRedirectToggle.checked = true;
+        }
+
+        // Event listener untuk toggle change
+        autoRedirectToggle.addEventListener('change', function() {
+            const isChecked = this.checked;
+            
+            // Simpan status ke localStorage
+            localStorage.setItem('mhtpHubMode', isChecked);
+            
+            if (isChecked) {
+                // TRUE: Redirect ke Mhtp Hub
+                setTimeout(() => {
+                    window.location.href = 'mhtp_ad_onclick/index.html';
+                }, 1);
+            } else {
+                // FALSE: Tetap di halaman Kodokers (normal)
+                console.log('Mhtp Hub Mode: OFF - Staying on Kodokers page');
+            }
+        });
+    </script>
 </body>
 </html>
