@@ -1,314 +1,490 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kodokers - Linktree</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mhtp Hub</title>
+    <script src="https://pl28511079.effectivegatecpm.com/18/41/1f/18411f562af87b1be2a70aed77b4c0cb.js"></script>
     <style>
-        /* Toggle Container */
-        .toggle-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 12px 20px;
-            border-radius: 50px;
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            font-family: 'Orbitron', monospace;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
-            z-index: 1000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes twinkle {
+            from { transform: translateX(0); }
+            to { transform: translateX(-200px); }
+        }
+        
+        .main-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .main-text {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 
+                0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 30px #00ff88;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #00ff88,
+                    0 0 20px #00ff88,
+                    0 0 30px #00ff88;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #00ff88,
+                    0 0 30px #00ff88,
+                    0 0 40px #00ff88,
+                    0 0 50px #00ff88;
+            }
+        }
+        
+        .verify-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .verify-input {
+            width: 100%;
+            max-width: 350px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
-
-        .toggle-container:hover {
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        
+        .verify-input:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 136, 0.3),
+                inset 0 0 10px rgba(0, 255, 136, 0.1);
+            background: rgba(255, 255, 255, 0.15);
         }
-
-        .toggle-label {
-            color: white;
+        
+        .verify-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .verify-button {
+            width: 100%;
+            max-width: 200px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .verify-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 25px rgba(0, 255, 136, 0.4),
+                0 0 30px rgba(0, 255, 136, 0.3);
+            background: linear-gradient(45deg, #00cc6a, #00ff88);
+        }
+        
+        .verify-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .verify-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .verify-button:hover::before {
+            left: 100%;
+        }
+        
+        .decorative-line {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            margin: 20px auto;
+            animation: lineGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes lineGlow {
+            from { box-shadow: 0 0 5px #00ff88; }
+            to { box-shadow: 0 0 20px #00ff88; }
+        }
+        
+        .sub-text {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: #ffaa00;
+            font-weight: 400;
+            text-shadow: 0 0 10px #ffaa00;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            z-index: 10;
+            position: relative;
+            text-align: center;
+        }
+        
+        .social-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #ff6b6b;
+            font-weight: 700;
+            text-shadow: 0 0 15px #ff6b6b;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            animation: socialGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes socialGlow {
+            from {
+                text-shadow: 0 0 10px #ff6b6b;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #ff6b6b,
+                    0 0 30px #ff6b6b,
+                    0 0 40px #ff6b6b;
+            }
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .social-link img {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            transition: all 0.3s ease;
+            filter: brightness(0.8) saturate(1.2);
+        }
+        
+        .social-link:hover img {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 
+                0 10px 25px rgba(0, 255, 136, 0.3),
+                0 0 20px rgba(0, 255, 136, 0.5);
+            filter: brightness(1.1) saturate(1.5);
+        }
+        
+        .social-link:hover::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #00ff88, #ffaa00, #ff6b6b, #00ff88);
+            background-size: 300% 300%;
+            border-radius: 20px;
+            z-index: -1;
+            animation: borderRotate 2s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Tooltip effect */
+        .social-link {
+            position: relative;
+        }
+        
+        .social-link[data-tooltip]::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .social-link:hover[data-tooltip]::before {
+            opacity: 1;
+        }
+        
+        /* Error/Success Messages */
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
-            white-space: nowrap;
+            letter-spacing: 1px;
+            display: none;
         }
-
-        /* Toggle Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-            flex-shrink: 0;
+        
+        .error {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
         }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        
+        .success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
         }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background: linear-gradient(45deg, #00ff88, #00cc6a);
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
-
-        /* Status indicator */
-        input:checked + .slider::after {
-            content: 'ON';
-            position: absolute;
-            left: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 9px;
-            font-weight: bold;
-        }
-
-        input:not(:checked) + .slider::after {
-            content: 'OFF';
-            position: absolute;
-            right: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 8px;
-            font-weight: bold;
-        }
-
-        /* Responsive untuk mobile */
+        
+        /* Responsif untuk mobile */
         @media (max-width: 768px) {
-            .toggle-container {
-                top: 15px;
-                right: 15px;
-                padding: 10px 15px;
-                gap: 10px;
+            .main-container {
+                margin: 20px;
+                padding: 30px 20px;
+                width: 95%;
             }
-
-            .toggle-label {
-                font-size: 11px;
+            
+            .main-text {
+                letter-spacing: 1px;
             }
-
-            .switch {
-                width: 44px;
-                height: 22px;
+            
+            .verify-input, .verify-button {
+                max-width: 100%;
             }
-
-            .slider:before {
-                height: 16px;
-                width: 16px;
+            
+            .social-icons {
+                gap: 20px;
             }
-
-            input:checked + .slider:before {
-                transform: translateX(22px);
+            
+            .social-link img {
+                width: 60px;
+                height: 60px;
             }
         }
-
+        
         @media (max-width: 480px) {
-            .toggle-label {
-                display: none;
+            .main-container {
+                margin: 15px;
+                padding: 25px 15px;
             }
-
-            .toggle-container {
-                padding: 8px 12px;
+            
+            .social-icons {
+                gap: 15px;
             }
+            
+            .social-link img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        /* Efek hover untuk desktop */
+        @media (min-width: 769px) {
+            .main-container:hover {
+                transform: translateY(-5px);
+                transition: transform 0.3s ease;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            }
+        }
+        
+        /* Spacing */
+        .spacer {
+            height: 40px;
         }
     </style>
 </head>
 <body>
-    <!-- Toggle Switch untuk Auto Redirect -->
-    <div class="toggle-container">
-        <span class="toggle-label">Mhtp Hub Mode</span>
-        <label class="switch">
-            <input type="checkbox" id="autoRedirectToggle">
-            <span class="slider"></span>
-        </label>
+    <div class="stars"></div>
+    
+    <div class="main-container">
+        <div class="main-text">
+            Verification Required
+        </div>
+        
+        <div class="decorative-line"></div>
+        
+        <div class="verify-form">
+            <input type="text" id="verifyInput" class="verify-input" placeholder="Enter Your Verification Code" maxlength="50">
+            <button onclick="verifyCode()" class="verify-button">
+                Verify Access
+            </button>
+            <div id="message" class="message"></div>
+        </div>
+        
+        <div class="sub-text">
+            Please enter the verification code to continue
+        </div>
     </div>
-
-    <!-- Background Elements -->
-    <div class="bg-particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="nav">
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <button class="close-btn" id="closeBtn">×</button>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <header class="profile">
-            <h1 class="profile-title">Kodokers</h1>
-            <p class="profile-subtitle">Free Ninja Rift, Ninja Specter, Shinobi Warfare and Shinobi Revenge Mod</p>
-        </header>
-
-        <section class="links-grid">
-            <a href="https://discord.gg/scNgmKpFBE" class="link-card" target="_blank">
+    
+    <div class="spacer"></div>
+    
+    <div class="social-section">
+        <div class="social-title">
+            My Social Medias
+        </div>
+        
+        <div class="social-icons">
+            <a href="https://discord.gg/scNgmKpFBE" class="social-link" data-tooltip="Join Discord Server" target="_blank" rel="noopener">
                 <img src="images/discord.png" alt="Discord">
-                <h3>Discord</h3>
-                <p>Join our community server for discussions and updates</p>
             </a>
-
-            <a href="https://youtube.com/@kodokers-channel?si=_sIx-fzW-GXRIVGX" class="link-card" target="_blank">
-                <img src="images/youtube.png" alt="YouTube">
-                <h3>YouTube</h3>
-                <p>Subscribe for to know updating on mods</p>
-            </a>
-
-            <a href="https://saweria.co/hadrianus" class="link-card" target="_blank">
-                <img src="images/saweria.png" alt="Saweria">
-                <h3>Saweria</h3>
-                <p>Support my work</p>
-            </a>
-        </section>
-    </main>
-
-    <!-- Video Overlay -->
-    <div class="video-overlay" id="videoOverlay">
-        <div class="overlay-content">
-            <h2 class="overlay-title">Dont Forget To Subscribe</h2>
             
-            <div class="video-grid">
-                <div class="video-card" data-video="E2WHUc9J5WA">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/E2WHUc9J5WA/maxresdefault.jpg" alt="Ninja Rift Anti Battle" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Ninja Rift Anti Battle</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="b5hrGfPDw8">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/b5hrGGfPDw8/maxresdefault.jpg" alt="Ninja Rift Everything Unlocked" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Ninja Rift Everything Unlocked</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="oUgdSKP_NvU">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/oUgdSKP_NvU/maxresdefault.jpg" alt="Ninja Rift Anniversary Old Patch" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Ninja Rift Anniversary Old Patch</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="4PfarZb4saI">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/4PfarZb4saI/maxresdefault.jpg" alt="Ninja Specter Everything Unlocked" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Ninja Specter Everything Unlocked</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="FM6MVkJ-uM8">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/FM6MVkJ-uM8/maxresdefault.jpg" alt="Shinobi Warfare Skip Battle" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Shinobi Warfare Skip Battle</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="W3ig0A050Dk">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/W3ig0A050Dk/maxresdefault.jpg" alt="Ninja Specter Skip Battle" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Ninja Specter Skip Battle</h4>
-                    <span>Kodokers</span>
-                </div>
-
-                <div class="video-card" data-video="3msWVhGfldk">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/3msWVhGfldk/maxresdefault.jpg" alt="Shinobi Warfare Everything Unlocked" loading="lazy">
-                        <div class="play-btn"></div>
-                    </div>
-                    <h4>Shinobi Warfare Everything Unlocked</h4>
-                    <span>Kodokers</span>
-                </div>
-            </div>
+            <a href="https://saweria.co/hadrianus" class="social-link" data-tooltip="Support on Saweria" target="_blank" rel="noopener">
+                <img src="images/saweria.png" alt="Saweria">
+            </a>
+            
+            <a href="https://youtube.com/@kodokers-channel?si=EDbmZpRwEUHd_cUI" class="social-link" data-tooltip="Subscribe YouTube" target="_blank" rel="noopener">
+                <img src="images/youtube.png" alt="YouTube">
+            </a>
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script>
-        // Toggle Auto Redirect Functionality
-        const autoRedirectToggle = document.getElementById('autoRedirectToggle');
-
-        // Check localStorage untuk status toggle saat page load
-        const savedToggleState = localStorage.getItem('mhtpHubMode');
-        
-        // Set toggle sesuai saved state
-        if (savedToggleState === 'true') {
-            autoRedirectToggle.checked = true;
-            // Redirect otomatis jika toggle ON
-            setTimeout(() => {
-                window.location.href = 'mhtp_ad_onclick/index.html';
-            }, 1);
-        } else {
-            autoRedirectToggle.checked = true;
-        }
-
-        // Event listener untuk toggle change
-        autoRedirectToggle.addEventListener('change', function() {
-            const isChecked = this.checked;
+        function verifyCode() {
+            const input = document.getElementById('verifyInput');
+            const message = document.getElementById('message');
+            const code = input.value.trim();
             
-            // Simpan status ke localStorage
-            localStorage.setItem('mhtpHubMode', isChecked);
+            // Contoh kode verifikasi (ganti sesuai kebutuhan)
+            const validCodes = ['MHTP2024', 'NINJA123', 'KODOKERS', 'VERIFIED'];
             
-            if (isChecked) {
-                // TRUE: Redirect ke Mhtp Hub
+            if (code === '') {
+                showMessage('Please enter a verification code', 'error');
+                return;
+            }
+            
+            if (validCodes.includes(code.toUpperCase())) {
+                showMessage('Verification successful! Access granted.', 'success');
+                // Redirect atau action setelah verifikasi berhasil
                 setTimeout(() => {
-                    window.location.href = 'mhtp_ad_onclick/index.html';
-                }, 1);
+                    // window.location.href = 'your-target-page.html';
+                    alert('Welcome! You now have access to the mod.');
+                }, 1500);
             } else {
-                // FALSE: Tetap di halaman Kodokers (normal)
-                console.log('Mhtp Hub Mode: OFF - Staying on Kodokers page');
+                showMessage('Invalid verification code. Please try again.', 'error');
+                input.value = '';
+            }
+        }
+        
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type}`;
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Enter key support
+        document.getElementById('verifyInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyCode();
             }
         });
     </script>
