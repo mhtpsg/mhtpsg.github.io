@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mhtp Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes twinkle {
+            from { transform: translateX(0); }
+            to { transform: translateX(-200px); }
+        }
+        
+        .main-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .main-text {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 
+                0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 30px #00ff88;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #00ff88,
+                    0 0 20px #00ff88,
+                    0 0 30px #00ff88;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #00ff88,
+                    0 0 30px #00ff88,
+                    0 0 40px #00ff88,
+                    0 0 50px #00ff88;
+            }
+        }
+        
+        .sub-text {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffaa00;
+            font-weight: 700;
+            text-shadow: 0 0 10px #ffaa00;
+            animation: pulse 3s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .decorative-line {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            margin: 20px auto;
+            animation: lineGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes lineGlow {
+            from { box-shadow: 0 0 5px #00ff88; }
+            to { box-shadow: 0 0 20px #00ff88; }
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            z-index: 10;
+            position: relative;
+            text-align: center;
+        }
+        
+        .social-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #ff6b6b;
+            font-weight: 700;
+            text-shadow: 0 0 15px #ff6b6b;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            animation: socialGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes socialGlow {
+            from {
+                text-shadow: 0 0 10px #ff6b6b;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #ff6b6b,
+                    0 0 30px #ff6b6b,
+                    0 0 40px #ff6b6b;
+            }
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .social-link img {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            transition: all 0.3s ease;
+            filter: brightness(0.8) saturate(1.2);
+        }
+        
+        .social-link:hover img {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 
+                0 10px 25px rgba(0, 255, 136, 0.3),
+                0 0 20px rgba(0, 255, 136, 0.5);
+            filter: brightness(1.1) saturate(1.5);
+        }
+        
+        .social-link:hover::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #00ff88, #ffaa00, #ff6b6b, #00ff88);
+            background-size: 300% 300%;
+            border-radius: 20px;
+            z-index: -1;
+            animation: borderRotate 2s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Tooltip effect */
+        .social-link {
+            position: relative;
+        }
+        
+        .social-link[data-tooltip]::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .social-link:hover[data-tooltip]::before {
+            opacity: 1;
+        }
+        
+        /* Responsif untuk mobile */
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .main-text {
+                letter-spacing: 1px;
+            }
+            
+            .sub-text {
+                letter-spacing: 1px;
+            }
+            
+            .social-icons {
+                gap: 20px;
+            }
+            
+            .social-link img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-container {
+                margin: 15px;
+                padding: 25px 15px;
+            }
+            
+            .social-icons {
+                gap: 15px;
+            }
+            
+            .social-link img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        /* Efek hover untuk desktop */
+        @media (min-width: 769px) {
+            .main-container:hover {
+                transform: translateY(-5px);
+                transition: transform 0.3s ease;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            }
+        }
+        
+        /* Spacing */
+        .spacer {
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="main-container">
+        <div class="main-text">
+            Thank You For Playing My Mod.<br>
+            Enjoy
+        </div>
+        
+        <div class="decorative-line"></div>
+        
+        <div class="sub-text">
+            You can back into the game, Ninjas!
+        </div>
+    </div>
+    
+    <div class="spacer"></div>
+    
+    <div class="social-section">
+        <div class="social-title">
+            My Social Medias
+        </div>
+        
+        <div class="social-icons">
+            <a href="https://discord.gg/scNgmKpFBE" class="social-link" data-tooltip="Join Discord Server" target="_blank" rel="noopener">
+                <img src="images/discord.png" alt="Discord">
+            </a>
+            
+            <a href="https://saweria.co/hadrianus" class="social-link" data-tooltip="Support on Saweria" target="_blank" rel="noopener">
+                <img src="images/saweria.png" alt="Saweria">
+            </a>
+            
+            <a href="https://youtube.com/@kodokers-channel?si=EDbmZpRwEUHd_cUI" class="social-link" data-tooltip="Subscribe YouTube" target="_blank" rel="noopener">
+                <img src="images/youtube.png" alt="YouTube">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
