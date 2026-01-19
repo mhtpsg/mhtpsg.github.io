@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mhtp Hub</title>
+    <title>MHTP Verification Hub</title>
     <script src="https://pl28511079.effectivegatecpm.com/18/41/1f/18411f562af87b1be2a70aed77b4c0cb.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
@@ -121,7 +121,8 @@
             text-align: center;
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         
         .verify-input:focus {
@@ -136,6 +137,8 @@
         .verify-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
             font-family: 'Orbitron', monospace;
+            text-transform: none;
+            letter-spacing: 1px;
         }
         
         .verify-button {
@@ -167,6 +170,12 @@
         
         .verify-button:active {
             transform: translateY(-1px);
+        }
+        
+        .verify-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
         
         .verify-button::before {
@@ -321,24 +330,94 @@
         /* Error/Success Messages */
         .message {
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px 20px;
             border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             letter-spacing: 1px;
             display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .error {
             background: rgba(255, 107, 107, 0.2);
-            border: 1px solid #ff6b6b;
+            border: 2px solid #ff6b6b;
             color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
         }
         
         .success {
             background: rgba(0, 255, 136, 0.2);
-            border: 1px solid #00ff88;
+            border: 2px solid #00ff88;
             color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        .processing {
+            background: rgba(255, 170, 0, 0.2);
+            border: 2px solid #ffaa00;
+            color: #ffaa00;
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+        
+        /* Loading animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '.';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        /* Code format helper */
+        .code-format {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        /* Verified badge */
+        .verified-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+            color: #00ff88;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 15px;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            }
         }
         
         /* Responsif untuk mobile */
@@ -357,6 +436,11 @@
                 max-width: 100%;
             }
             
+            .verify-input {
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+            
             .social-icons {
                 gap: 20px;
             }
@@ -371,6 +455,11 @@
             .main-container {
                 margin: 15px;
                 padding: 25px 15px;
+            }
+            
+            .verify-input {
+                font-size: 12px;
+                letter-spacing: 1px;
             }
             
             .social-icons {
@@ -396,6 +485,33 @@
         .spacer {
             height: 40px;
         }
+        
+        /* Particle effects */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00ff88;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            animation: particleFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(50px) scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -409,15 +525,23 @@
         <div class="decorative-line"></div>
         
         <div class="verify-form">
-            <input type="text" id="verifyInput" class="verify-input" placeholder="Enter Your Verification Code" maxlength="50">
-            <button onclick="verifyCode()" class="verify-button">
+            <input 
+                type="text" 
+                id="verifyInput" 
+                class="verify-input" 
+                placeholder="Enter Your Verification Code" 
+                maxlength="19"
+                autocomplete="off"
+                spellcheck="false">
+            <div class="code-format">Format: MHTP-XXXX-XXXX-XXXX</div>
+            <button onclick="verifyCode()" class="verify-button" id="verifyBtn">
                 Verify Access
             </button>
             <div id="message" class="message"></div>
         </div>
         
         <div class="sub-text">
-            Please enter the verification code to continue
+            Please enter the verification code from game
         </div>
     </div>
     
@@ -430,55 +554,196 @@
         
         <div class="social-icons">
             <a href="https://discord.gg/scNgmKpFBE" class="social-link" data-tooltip="Join Discord Server" target="_blank" rel="noopener">
-                <img src="images/discord.png" alt="Discord">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
             </a>
             
             <a href="https://saweria.co/hadrianus" class="social-link" data-tooltip="Support on Saweria" target="_blank" rel="noopener">
-                <img src="images/saweria.png" alt="Saweria">
+                <img src="../images/saweria.png" alt="Saweria">
             </a>
             
             <a href="https://youtube.com/@kodokers-channel?si=EDbmZpRwEUHd_cUI" class="social-link" data-tooltip="Subscribe YouTube" target="_blank" rel="noopener">
-                <img src="images/youtube.png" alt="YouTube">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
             </a>
         </div>
     </div>
 
     <script>
+        // Storage key untuk verifikasi
+        const VERIFICATION_STORAGE_KEY = 'mhtp_verification_data';
+        const VERIFIED_CODES_KEY = 'mhtp_verified_codes';
+        
+        // Auto-format input saat user mengetik
+        document.getElementById('verifyInput').addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            let formatted = '';
+            
+            if (value.length > 0) {
+                formatted = 'MHTP-';
+                value = value.replace(/^MHTP/, '');
+                
+                for (let i = 0; i < value.length && i < 12; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formatted += '-';
+                    }
+                    formatted += value[i];
+                }
+            }
+            
+            e.target.value = formatted;
+        });
+        
+        // Fungsi verifikasi kode
         function verifyCode() {
             const input = document.getElementById('verifyInput');
             const message = document.getElementById('message');
-            const code = input.value.trim();
-            
-            // Contoh kode verifikasi (ganti sesuai kebutuhan)
-            const validCodes = ['MHTP2024', 'NINJA123', 'KODOKERS', 'VERIFIED'];
+            const verifyBtn = document.getElementById('verifyBtn');
+            const code = input.value.trim().toUpperCase();
             
             if (code === '') {
                 showMessage('Please enter a verification code', 'error');
                 return;
             }
             
-            if (validCodes.includes(code.toUpperCase())) {
-                showMessage('Verification successful! Access granted.', 'success');
-                // Redirect atau action setelah verifikasi berhasil
-                setTimeout(() => {
-                    // window.location.href = 'your-target-page.html';
-                    alert('Welcome! You now have access to the mod.');
-                }, 1500);
-            } else {
-                showMessage('Invalid verification code. Please try again.', 'error');
-                input.value = '';
+            // Check format MHTP-XXXX-XXXX-XXXX
+            const mhtpPattern = /^MHTP-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+            
+            if (!mhtpPattern.test(code)) {
+                showMessage('Invalid code format! Use format: MHTP-XXXX-XXXX-XXXX', 'error');
+                return;
+            }
+            
+            // Check if code already verified
+            const verifiedCodes = getVerifiedCodes();
+            if (verifiedCodes.includes(code)) {
+                showMessage('This code has already been used!', 'error');
+                return;
+            }
+            
+            // Disable button during verification
+            verifyBtn.disabled = true;
+            showMessage('Processing verification<span class="loading-dots"></span>', 'processing');
+            
+            // Simulate verification process
+            setTimeout(function() {
+                // Save verification data
+                const verificationData = {
+                    code: code,
+                    verified: true,
+                    timestamp: Date.now(),
+                    expiresAt: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+                };
+                
+                try {
+                    // Save to localStorage
+                    localStorage.setItem(VERIFICATION_STORAGE_KEY, JSON.stringify(verificationData));
+                    
+                    // Add to verified codes list
+                    verifiedCodes.push(code);
+                    localStorage.setItem(VERIFIED_CODES_KEY, JSON.stringify(verifiedCodes));
+                    
+                    // Success
+                    showMessage('✓ Verification Successful! Access Granted!', 'success');
+                    input.value = '';
+                    input.disabled = true;
+                    verifyBtn.disabled = true;
+                    verifyBtn.textContent = 'VERIFIED';
+                    
+                    // Add verified badge
+                    const badge = document.createElement('div');
+                    badge.className = 'verified-badge';
+                    badge.textContent = '✓ VERIFIED - You can now close this window';
+                    message.appendChild(badge);
+                    
+                    // Create particles effect
+                    createParticles();
+                    
+                    // Notify game (through multiple methods)
+                    notifyGame(verificationData);
+                    
+                    // Auto-close after 3 seconds (optional)
+                    setTimeout(function() {
+                        if (window.opener) {
+                            window.opener.postMessage({
+                                type: 'MHTP_VERIFICATION_SUCCESS',
+                                data: verificationData
+                            }, '*');
+                        }
+                        // window.close(); // Uncomment to auto-close
+                    }, 3000);
+                    
+                } catch(error) {
+                    showMessage('Error saving verification. Please try again.', 'error');
+                    verifyBtn.disabled = false;
+                    console.error('Verification error:', error);
+                }
+            }, 1500);
+        }
+        
+        // Get list of verified codes
+        function getVerifiedCodes() {
+            try {
+                const codes = localStorage.getItem(VERIFIED_CODES_KEY);
+                return codes ? JSON.parse(codes) : [];
+            } catch(e) {
+                return [];
             }
         }
         
+        // Notify game about verification
+        function notifyGame(data) {
+            // Method 1: PostMessage to opener window
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'MHTP_VERIFICATION',
+                    data: data
+                }, '*');
+            }
+            
+            // Method 2: LocalStorage (game can poll this)
+            try {
+                localStorage.setItem('mhtp_last_verification', JSON.stringify(data));
+            } catch(e) {}
+            
+            // Method 3: SessionStorage
+            try {
+                sessionStorage.setItem('mhtp_verification', JSON.stringify(data));
+            } catch(e) {}
+            
+            // Method 4: Custom event
+            const event = new CustomEvent('mhtpVerificationComplete', { detail: data });
+            window.dispatchEvent(event);
+        }
+        
+        // Show message helper
         function showMessage(text, type) {
             const message = document.getElementById('message');
-            message.textContent = text;
+            message.innerHTML = text;
             message.className = `message ${type}`;
             message.style.display = 'block';
             
-            setTimeout(() => {
-                message.style.display = 'none';
-            }, 5000);
+            if (type === 'error') {
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Create particle effects
+        function createParticles() {
+            const colors = ['#00ff88', '#ffaa00', '#ff6b6b'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(function() {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = window.innerHeight / 2 + 'px';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 3000);
+                }, i * 100);
+            }
         }
         
         // Enter key support
@@ -487,6 +752,62 @@
                 verifyCode();
             }
         });
+        
+        // Check if already verified on page load
+        window.addEventListener('load', function() {
+            try {
+                const verification = localStorage.getItem(VERIFICATION_STORAGE_KEY);
+                if (verification) {
+                    const data = JSON.parse(verification);
+                    const now = Date.now();
+                    
+                    if (data.verified && data.expiresAt > now) {
+                        const timeLeft = Math.floor((data.expiresAt - now) / 1000 / 60);
+                        showMessage(`Already verified! Code: ${data.code} (Valid for ${timeLeft} minutes)`, 'success');
+                        document.getElementById('verifyInput').value = data.code;
+                        document.getElementById('verifyInput').disabled = true;
+                        document.getElementById('verifyBtn').disabled = true;
+                        document.getElementById('verifyBtn').textContent = 'VERIFIED';
+                    }
+                }
+            } catch(e) {
+                console.log('No previous verification found');
+            }
+        });
+        
+        // Listen for messages from game
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'MHTP_REQUEST_STATUS') {
+                try {
+                    const verification = localStorage.getItem(VERIFICATION_STORAGE_KEY);
+                    if (verification) {
+                        event.source.postMessage({
+                            type: 'MHTP_VERIFICATION_STATUS',
+                            data: JSON.parse(verification)
+                        }, event.origin);
+                    }
+                } catch(e) {}
+            }
+        });
+        
+        // Cleanup expired verifications
+        function cleanupExpiredVerifications() {
+            try {
+                const verification = localStorage.getItem(VERIFICATION_STORAGE_KEY);
+                if (verification) {
+                    const data = JSON.parse(verification);
+                    if (data.expiresAt < Date.now()) {
+                        localStorage.removeItem(VERIFICATION_STORAGE_KEY);
+                    }
+                }
+            } catch(e) {}
+        }
+        
+        // Run cleanup on load
+        cleanupExpiredVerifications();
+        
+        // Focus on input
+        document.getElementById('verifyInput').focus();
     </script>
 </body>
 </html>
