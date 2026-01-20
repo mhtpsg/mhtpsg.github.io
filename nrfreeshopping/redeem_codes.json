@@ -31,15 +31,15 @@
       {
          "code": "SPCL-FORY-T500-SUBS",
          "stamina_amount": 100,
-         "active": false,
-         "expiry_date": "2026-01-18T10:00:00Z",
+         "active": true,
+         "expiry_date": "2026-01-22T10:00:00Z",
          "description": "Ended for 17:00 WIB"
       },
       {
    "code": "FREE-SPIN-STAM-XMAS",
    "stamina_amount": 20,
-   "active": false,
-   "expiry_date": "2026-01-19T16:59:00Z",
+   "active": true,
+   "expiry_date": "2026-01-21T16:59:00Z",
    "description": "Free Stamina again. Ended for 23:59 WIB"
 }
    ]
