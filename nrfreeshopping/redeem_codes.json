@@ -15,10 +15,17 @@
             "description": "This for Discord Member. Free 20 Stamina xD. Ended for 23:59 WIB"
          },
          {
+            "code": "EAGL-GUNR-F4CK-YOUH",
+            "stamina_amount": 50,
+            "active": true,
+            "expiry_date": "2026-01-23T16:59:00Z",
+            "description": "Eagle Gunner Fuck Youuu"
+         },
+         {
             "code": "ROAD-1KMB-DSCD-MHTP",
             "stamina_amount": 20,
             "active": true,
-            "expiry_date": "2026-01-19T16:59:00Z",
+            "expiry_date": "2026-01-21T16:59:00Z",
             "description": "Road to 1K Members on discord. Ended for 23:59 WIB"
          },
          {
