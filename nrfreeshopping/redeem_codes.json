@@ -5,49 +5,49 @@
             "stamina_amount": 20,
             "active": true,
             "expiry_date": "2026-01-17T16:59:00Z",
-            "description": "Christmas Event Stamina Code. Ended for 23:59 WIB"
+            "description": "Expired"
          },
          {
             "code": "THIS-FORD-ISCM-EMBR",
             "stamina_amount": 40,
             "active": true,
             "expiry_date": "2026-02-10T16:59:00Z",
-            "description": "This for Discord Member. Free 20 Stamina xD. Ended for 23:59 WIB"
+            "description": "Active"
          },
          {
             "code": "EAGL-GUNR-F4CK-YOUH",
             "stamina_amount": 50,
             "active": true,
             "expiry_date": "2026-01-23T16:59:00Z",
-            "description": "Eagle Gunner Fuck Youuu"
+            "description": "Active"
          },
          {
             "code": "ROAD-1KMB-DSCD-MHTP",
             "stamina_amount": 20,
             "active": true,
             "expiry_date": "2026-01-21T16:59:00Z",
-            "description": "Road to 1K Members on discord. Ended for 23:59 WIB"
+            "description": "Active"
          },
          {
             "code": "WEEK-STAM-MHTP-DSCD",
             "stamina_amount": 60,
             "active": true,
             "expiry_date": "2026-01-22T16:59:00Z",
-            "description": "Weekly Code. Ended for 23:59 WIB"
+            "description": "Active"
          },
       {
          "code": "SPCL-FORY-T500-SUBS",
          "stamina_amount": 100,
          "active": true,
          "expiry_date": "2026-01-22T10:00:00Z",
-         "description": "Ended for 17:00 WIB"
+         "description": "Active"
       },
       {
    "code": "FREE-SPIN-STAM-XMAS",
    "stamina_amount": 20,
    "active": true,
    "expiry_date": "2026-01-21T16:59:00Z",
-   "description": "Free Stamina again. Ended for 23:59 WIB"
+   "description": "Active"
 }
    ]
 }
