@@ -5,16 +5,16 @@
       "amount": 3,
       "description": "3 Tengu Feathers",
       "active": true,
-      "expiry_date": "2025-12-31"
+      "expiry_date": "2026-01-28"
     },
     "CHAR-GRAFF-FREE-2025": {
       "reward_type": "character",
       "character": "Graffiti",
       "description": "Graffiti Character",
       "active": true,
-      "expiry_date": "2025-12-31"
+      "expiry_date": "2026-02-15"
     },
-    "SMRR-CODE-2025-MTRL": {
+    "SMRR-CODE-2026-MTRL": {
       "reward_type": "summer_materials",
       "rewards": {
         "sakura": 5,
@@ -23,9 +23,9 @@
       },
       "description": "Summer Materials Pack: 5 Sakura, 5 Water, 5 Black Water",
       "active": true,
-      "expiry_date": "2025-12-31"
+      "expiry_date": "2026-04-26"
     }
   },
   "version": "1.0",
-  "last_updated": "2025-01-01"
+  "last_updated": "2026-01-26"
 }
