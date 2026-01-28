@@ -15,39 +15,60 @@
             "description": "Active"
          },
          {
+             "code": "ENDS-MONT-HJAN-CODE",
+            "stamina_amount": 50,
+            "active": true,
+            "expiry_date": "2026-02-3T16:59:00Z",
+            "description": "Active"
+         },
+         {
+             "code": "WHEN-FEBR-UARY-COME",
+            "stamina_amount": 20,
+            "active": true,
+            "expiry_date": "2026-01-31T16:59:00Z",
+            "description": "Active"
+         },
+         {
+             "code": "LSCD-EGLA-SUKB-ENER",
+            "stamina_amount": 60,
+            "active": true,
+            "expiry_date": "2026-02-15T16:59:00Z",
+            "description": "Active"
+         },
+         {
             "code": "EAGL-GUNR-F4CK-YOUH",
             "stamina_amount": 50,
             "active": true,
             "expiry_date": "2026-01-23T16:59:00Z",
-            "description": "Active"
+            "description": "Expired"
          },
          {
             "code": "ROAD-1KMB-DSCD-MHTP",
             "stamina_amount": 20,
             "active": true,
             "expiry_date": "2026-01-21T16:59:00Z",
-            "description": "Active"
+            "description": "Expired"
          },
          {
             "code": "WEEK-STAM-MHTP-DSCD",
             "stamina_amount": 60,
             "active": true,
             "expiry_date": "2026-01-22T16:59:00Z",
-            "description": "Active"
+            "description": "Expired"
          },
       {
          "code": "SPCL-FORY-T500-SUBS",
          "stamina_amount": 100,
          "active": true,
          "expiry_date": "2026-01-22T10:00:00Z",
-         "description": "Active"
+         "description": "Expired"
       },
       {
    "code": "FREE-SPIN-STAM-XMAS",
    "stamina_amount": 20,
    "active": true,
    "expiry_date": "2026-01-21T16:59:00Z",
-   "description": "Active"
+   "description": "Expired"
 }
    ]
 }
